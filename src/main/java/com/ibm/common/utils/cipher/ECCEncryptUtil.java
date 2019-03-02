@@ -30,7 +30,7 @@ import sun.security.ec.ECPublicKeyImpl;
  * @version 1.0
  * @since 1.0
  */
-@SuppressWarnings({ "unused", "restriction" })
+@SuppressWarnings({ "unused" })
 public class ECCEncryptUtil extends EncryptUtil {
 	public static final String ALGORITHM = "EC";
 	private static final String PUBLIC_KEY = "ECCPublicKey";
