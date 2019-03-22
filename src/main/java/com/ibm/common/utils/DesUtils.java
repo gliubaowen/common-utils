@@ -90,7 +90,8 @@ public class DesUtils {
    *            指定的密钥  
    * @throws Exception  
    */
-  public DesUtils(String strKey) throws Exception {
+  @SuppressWarnings("restriction")
+public DesUtils(String strKey) throws Exception {
     Security.addProvider(new com.sun.crypto.provider.SunJCE());
     Key key = getKey(strKey.getBytes());
 

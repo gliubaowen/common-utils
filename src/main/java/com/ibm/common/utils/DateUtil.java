@@ -298,22 +298,6 @@ public class DateUtil {
 		return day;
 	}
 
-	// 计算日期相隔毫秒
-	public static long dateDiff(Date startTime, Date endTime) {
-		// 按照传入的格式生成一个simpledateformate对象
-		long nd = 1000 * 24 * 60 * 60;// 一天的毫秒数
-		long nh = 1000 * 60 * 60;// 一小时的毫秒数
-		long nm = 1000 * 60;// 一分钟的毫秒数
-		long ns = 1000;// 一秒钟的毫秒数long diff;try {
-		// 获得两个时间的毫秒时间差异
-		if (endTime != null && startTime != null) {
-			long diff = endTime.getTime() - startTime.getTime();
-			return diff;
-		} else {
-			return 0;
-		}
-	}
-
 	// 日期转化为字符串
 	public static String getStrFromDate(Date date) {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
@@ -437,16 +421,6 @@ public class DateUtil {
 	}
 	
 	/**
-	 * 获取上月第1天
-	 * 秦桂俊
-	 */
-	public static String getDayOfThisMonthEnd(String endDate) {
-		SimpleDateFormat ymdFormat = new SimpleDateFormat("yyyy-MM-dd");
-		calendar.setTime(DateUtil.formatToDate(endDate, "yyyy-MM-dd"));
-		calendar.add(calendar.MONTH, -1);
-		return ymdFormat.format(calendar.getTime());
-	}
-	/**
 	 * 获取下月第1天
 	 * 秦桂俊
 	 */
@@ -465,13 +439,6 @@ public class DateUtil {
         return  ymdFormat.format(calendar.getTime());
     }
 	
-	public static String getDayOfThisMonthEnd(String date,String format) {
-		SimpleDateFormat ymdFormat = new SimpleDateFormat(format);
-		calendar.setTime(DateUtil.formatToDate(date, "yyyy-MM-dd"));
-		calendar.add(calendar.MONTH, -1);
-		return ymdFormat.format(calendar.getTime());
-	}
-	
 	/**
 	 * 获取当月第1天
 	 * 秦桂俊
@@ -484,62 +451,6 @@ public class DateUtil {
 	}
 	
 
-	public static void main(String[] args) throws ParseException, InterruptedException {
-		
-		System.out.println(DateUtil.nextMonthFirstDate(DateUtil.formatToDateStr("20170201")));
-		
-		
-//		Timestamp now = new Timestamp(new Date().getTime());
-//		System.out.println(getDayStart(now));
-//		System.out.println(getDayEnd(now));
-//		
-//		DateUtil t = new DateUtil();
-//		System.out.println("t.getCurrentDateYMD()=>" + t.getCurrentTimeStampYMD().toString());
-//		System.out.println("t.getCurrentDateYMD()=>" + t.getCurrentDateYMD().toString());
-//		System.out.println(t.getDateFromStr("2015-11-06").getTime());
-//		System.out.println(t.getDateFromStr("2015-11-07").getTime());
-		/*
-		 * t.dateDiff("2014-12-15","2014-12-11","yyyy-MM-dd"); Date
-		 * startTime=t.formatToDate("2015-6-19", "yyyy-MM-dd"); Date
-		 * endTime=t.formatToDate("2015-6-19", "yyyy-MM-dd"); Date
-		 * currentDate=t.getCurrentDateYMD();
-		 * System.out.println("currentDate=>"+currentDate.toString());
-		 * System.out.println("startTime=>"+startTime.toString());
-		 * System.out.println("endTime=>"+endTime.toString()); if
-		 * (currentDate.compareTo(startTime)>=0 &&
-		 * currentDate.compareTo(endTime)<=0) { System.out.println("时间范围有效");
-		 * }else{ System.out.println("时间范围无效"); }
-		 * System.out.println("date"+DateUtil.formatToDate("2014-09-23",
-		 * "yyyy-MM-dd"));
-		 * 
-		 * startTime=new Date(); for(int i=0;i<100;i++){
-		 * Thread.currentThread().sleep((long) (Math.random()*100));
-		 * System.out.println(t.getPureCurrentTs()); } endTime=new Date();
-		 * System.out.println(DateUtil.dateDiff(startTime, endTime)/1000);
-		 * PointsCalculator calculator=new PointsCalculator();
-		 * System.out.println(calculator.isBirthDayMatched("2", "4", "8",
-		 * "2015")); SimpleDateFormat df = new
-		 * SimpleDateFormat("YYYYMMDDHHMISS"); String time = df.format(new
-		 * Timestamp(System.currentTimeMillis())); System.out.println(time);
-		 */
-	}
-
-	public static String getYear() {
-		return formatDate(new Date(), new Object[] { "yyyy" });
-	}
-
-	public static String formatDate(Date date, Object... pattern) {
-		SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd");
-		String f = sf.format(new Date());
-		String formatDate = null;
-		if ((pattern != null) && (pattern.length > 0)) {
-			formatDate = formatt(date, pattern[0].toString());
-		} else {
-			formatDate = formatt(date, "yyyy-MM-dd");
-		}
-		return formatDate;
-	}
-
 	public static String formatt(Date date, String pattern) {
 		return formats(date, pattern, null, null);
 	}
@@ -548,34 +459,6 @@ public class DateUtil {
 		FastDateFormat df = FastDateFormat.getInstance(pattern, timeZone, locale);
 		return df.format(date);
 	}
-
-	/**
-	 * 得到指定日期的前n天的日期
-	 */
-	public static Date getBeforeNDate(Date date, int n) {
-		Calendar cal = Calendar.getInstance();
-		cal.setTime(date);
-		cal.add(cal.DATE, -n);
-		return cal.getTime();
-	}
-
-	
-	public static String getMonthEnd(String startDate) {
-		String str = "";
-		calendar.setTime(getDateFromStr(startDate));
-		calendar.add(calendar.DATE, -1);
-		SimpleDateFormat sdf = new SimpleDateFormat("dd");
-		str = sdf.format(calendar.getTime());
-		return str;
-	}
-	
-	public static String getPrevMonth(String yyyyMm){
-		calendar.setTime(DateUtil.formatToDate(yyyyMm, "yyyyMM"));
-		calendar.add(calendar.DATE, -1);
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMM");
-		return sdf.format(calendar.getTime());
-	}
-	
 
 	
 	/**
@@ -639,13 +522,4 @@ public class DateUtil {
 		return currYearLast;
 	}
 
-	public static Date formatStrToDate(String dateStr, String formatStr){
-		SimpleDateFormat format = new SimpleDateFormat(formatStr);
-		try {
-	        return format.parse(dateStr);
-        } catch (ParseException e) {
-        	return new Date(9999, 1, 1);
-        }
-	}
-	
 }

@@ -15,6 +15,8 @@ import com.ibm.common.utils.cipher.EncryptUtil;
 import com.ibm.common.utils.cipher.PBEEncryptUtil;
 import com.ibm.common.utils.cipher.RSAEncryptUtil;
 
+import junit.framework.TestCase;
+
 
 
 
@@ -23,7 +25,7 @@ import com.ibm.common.utils.cipher.RSAEncryptUtil;
  * @author liubaowen
  *
  */
-public class EncryptUtilTest {
+public class EncryptUtilTest extends TestCase {
 	
 	
 	public void SimpleEncryptTest() throws Exception {

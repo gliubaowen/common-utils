@@ -2,24 +2,15 @@ package com.ibm.common.utils.cipher;
 
 import java.math.BigInteger;
 import java.security.Key;
-import java.security.KeyFactory;
 import java.security.interfaces.ECPrivateKey;
 import java.security.interfaces.ECPublicKey;
 import java.security.spec.ECFieldF2m;
 import java.security.spec.ECParameterSpec;
 import java.security.spec.ECPoint;
-import java.security.spec.ECPrivateKeySpec;
-import java.security.spec.ECPublicKeySpec;
 import java.security.spec.EllipticCurve;
-import java.security.spec.PKCS8EncodedKeySpec;
-import java.security.spec.X509EncodedKeySpec;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.crypto.Cipher;
-import javax.crypto.NullCipher;
-
-import sun.security.ec.ECKeyFactory;
 import sun.security.ec.ECPrivateKeyImpl;
 import sun.security.ec.ECPublicKeyImpl;
 
@@ -30,7 +21,7 @@ import sun.security.ec.ECPublicKeyImpl;
  * @version 1.0
  * @since 1.0
  */
-@SuppressWarnings({ "unused" })
+@SuppressWarnings({ "restriction" })
 public class ECCEncryptUtil extends EncryptUtil {
 	public static final String ALGORITHM = "EC";
 	private static final String PUBLIC_KEY = "ECCPublicKey";
