@@ -23,7 +23,7 @@ public abstract class BeanAnnotationUtils {
 	 */
 	public static List<Field> getOrderedBeanField(Field[] fields) {
 		// 用来存放所有的属性域
-		List<Field> fieldList = new ArrayList<Field>();
+		List<Field> fieldList = new ArrayList<Field>(fields.length);
 		// 过滤带有注解的Field
 		for (Field f : fields) {
 			if (f.getAnnotation(BeanField.class) != null) {
@@ -45,7 +45,7 @@ public abstract class BeanAnnotationUtils {
 	 */
 	public static List<Field> getOrderedDoubleBeanField(Field[] fields) {
 		// 用来存放所有的属性域
-		List<Field> fieldList = new ArrayList<Field>();
+		List<Field> fieldList = new ArrayList<Field>(fields.length);
 		// 过滤带有注解的Field
 		for (Field f : fields) {
 			if (f.getAnnotation(BeanField.class) != null) {
@@ -58,5 +58,4 @@ public abstract class BeanAnnotationUtils {
 		return fieldList;
 	}
 
-	
 }
