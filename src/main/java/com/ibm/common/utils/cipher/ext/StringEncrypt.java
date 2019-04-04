@@ -1,4 +1,4 @@
-package com.ibm.common.utils.string;
+package com.ibm.common.utils.cipher.ext;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -43,8 +43,8 @@ public class StringEncrypt {
 		return des;
 	}
 
-	/*public static void main(String args[]) {
-		String s = StringEncrypt.Encrypt("122333", "");
-		System.out.println(s);
-	}*/
+	/*
+	 * public static void main(String args[]) { String s =
+	 * StringEncrypt.Encrypt("122333", ""); System.out.println(s); }
+	 */
 }

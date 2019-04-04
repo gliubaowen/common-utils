@@ -1,7 +1,6 @@
 package com.ibm.common.utils.string;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class BinaryUtils {
@@ -87,12 +86,6 @@ public class BinaryUtils {
 
 	public String getBinaryDB(String binaryStr) {
 		return getBinaryDB(binaryStr, binaryStr.length());
-	}
-
-	public static void main(String[] args) {
-		Date date = new Date();
-		System.out.println(new BinaryUtils().getBinary("00101011"));
-		System.out.println(new Date().getTime() - date.getTime());
 	}
 
 }

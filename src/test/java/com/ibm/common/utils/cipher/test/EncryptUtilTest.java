@@ -1,4 +1,4 @@
-package com.ibm.common.utils.test.cipher;
+package com.ibm.common.utils.cipher.test;
 
 
 //import static org.junit.Assert.assertArrayEquals;
@@ -21,7 +21,7 @@ import junit.framework.TestCase;
 
 /**
  * 加密测试类
- * @author liubaowen
+ * @author LiuBaoWen
  *
  */
 public class EncryptUtilTest extends TestCase {

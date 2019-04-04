@@ -7,4 +7,4 @@
  * @author LiuBaoWen
  *
  */
-package com.ibm.common.utils.test.cipher;
+package com.ibm.common.utils.cipher.test;

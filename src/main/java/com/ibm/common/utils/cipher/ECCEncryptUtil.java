@@ -17,7 +17,7 @@ import sun.security.ec.ECPublicKeyImpl;
 /**
  * ECC安全编码组件
  * 
- * @author liubaowen
+ * @author LiuBaoWen
  * @version 1.0
  * @since 1.0
  */
@@ -99,8 +99,7 @@ public class ECCEncryptUtil extends EncryptUtil {
 	 * @return
 	 * @throws Exception
 	 */
-	public static String getPrivateKey(Map<String, Object> keyMap)
-			throws Exception {
+	public static String getPrivateKey(Map<String, Object> keyMap) throws Exception {
 		Key key = (Key) keyMap.get(PRIVATE_KEY);
 
 		return encryptBASE64(key.getEncoded());
@@ -113,8 +112,7 @@ public class ECCEncryptUtil extends EncryptUtil {
 	 * @return
 	 * @throws Exception
 	 */
-	public static String getPublicKey(Map<String, Object> keyMap)
-			throws Exception {
+	public static String getPublicKey(Map<String, Object> keyMap) throws Exception {
 		Key key = (Key) keyMap.get(PUBLIC_KEY);
 
 		return encryptBASE64(key.getEncoded());
@@ -127,16 +125,13 @@ public class ECCEncryptUtil extends EncryptUtil {
 	 * @throws Exception
 	 */
 	public static Map<String, Object> initKey() throws Exception {
-		BigInteger x1 = new BigInteger(
-				"2fe13c0537bbc11acaa07d793de4e6d5e5c94eee8", 16);
-		BigInteger x2 = new BigInteger(
-				"289070fb05d38ff58321f2e800536d538ccdaa3d9", 16);
+		BigInteger x1 = new BigInteger("2fe13c0537bbc11acaa07d793de4e6d5e5c94eee8", 16);
+		BigInteger x2 = new BigInteger("289070fb05d38ff58321f2e800536d538ccdaa3d9", 16);
 
 		ECPoint g = new ECPoint(x1, x2);
 
 		// the order of generator
-		BigInteger n = new BigInteger(
-				"5846006549323611672814741753598448348329118574063", 10);
+		BigInteger n = new BigInteger("5846006549323611672814741753598448348329118574063", 10);
 		// the cofactor
 		int h = 2;
 		int m = 163;
@@ -148,13 +143,11 @@ public class ECCEncryptUtil extends EncryptUtil {
 
 		EllipticCurve ellipticCurve = new EllipticCurve(ecField, a, b);
 
-		ECParameterSpec ecParameterSpec = new ECParameterSpec(ellipticCurve, g,
-				n, h);
+		ECParameterSpec ecParameterSpec = new ECParameterSpec(ellipticCurve, g, n, h);
 		// 公钥
 		ECPublicKey publicKey = new ECPublicKeyImpl(g, ecParameterSpec);
 
-		BigInteger s = new BigInteger(
-				"1234006549323611672814741753598448348329118574063", 10);
+		BigInteger s = new BigInteger("1234006549323611672814741753598448348329118574063", 10);
 		// 私钥
 		ECPrivateKey privateKey = new ECPrivateKeyImpl(s, ecParameterSpec);
 

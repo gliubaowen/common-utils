@@ -4,7 +4,7 @@ import java.util.UUID;
 
 import org.apache.commons.codec.binary.Base64;
 
-public abstract class UuidUtils {
+public abstract class UUIDUtils {
 
 	public static String uuid() {
 		UUID uuid = UUID.randomUUID();
@@ -62,9 +62,9 @@ public abstract class UuidUtils {
 	}
 
 	public static void main(String[] args) {
-		System.out.println(UuidUtils.uuid());
-		System.out.println(UuidUtils.getUuid());
-		System.out.println(UuidUtils.compressedUuid());
+		System.out.println(UUIDUtils.uuid());
+		System.out.println(UUIDUtils.getUuid());
+		System.out.println(UUIDUtils.compressedUuid());
 
 	}
 }

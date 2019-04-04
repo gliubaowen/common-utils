@@ -11,7 +11,7 @@ import java.io.ObjectOutputStream;
  * 
  * @author Paul 日期：2016-10-20
  */
-public class ObjectTranscoder {
+public class SerializableUtils {
 	public static byte[] serialize(Object value) {
 		if (value == null) {
 			throw new NullPointerException("Can't serialize null");

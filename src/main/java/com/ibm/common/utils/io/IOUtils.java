@@ -8,8 +8,6 @@ import java.io.OutputStreamWriter;
 import java.io.Reader;
 import java.io.Writer;
 
-import com.ibm.common.utils.exception.Tools;
-
 public class IOUtils {
 
 	/**
@@ -43,7 +41,7 @@ public class IOUtils {
 				throw new IllegalArgumentException("obj is not iostream, it can not close!");
 			}
 		} catch (IOException e) {
-			throw new IllegalArgumentException("close iostream error:" + Tools.getStackTrace(e));
+			throw new IllegalArgumentException("close iostream error:" + e.getStackTrace());
 		}
 
 	}

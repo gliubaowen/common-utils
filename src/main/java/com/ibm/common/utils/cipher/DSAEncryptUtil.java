@@ -18,7 +18,7 @@ import java.util.Map;
 /**
  * DSA安全编码组件
  * 
- * @author liubaowen
+ * @author LiuBaoWen
  * @version 1.0
  * @since 1.0
  */
@@ -47,10 +47,8 @@ public class DSAEncryptUtil extends EncryptUtil {
 	/**
 	 * 用私钥对信息生成数字签名
 	 * 
-	 * @param data
-	 *            加密数据
-	 * @param privateKey
-	 *            私钥
+	 * @param data       加密数据
+	 * @param privateKey 私钥
 	 * 
 	 * @return
 	 * @throws Exception
@@ -79,19 +77,15 @@ public class DSAEncryptUtil extends EncryptUtil {
 	/**
 	 * 校验数字签名
 	 * 
-	 * @param data
-	 *            加密数据
-	 * @param publicKey
-	 *            公钥
-	 * @param sign
-	 *            数字签名
+	 * @param data      加密数据
+	 * @param publicKey 公钥
+	 * @param sign      数字签名
 	 * 
 	 * @return 校验成功返回true 失败返回false
 	 * @throws Exception
 	 * 
 	 */
-	public static boolean verify(byte[] data, String publicKey, String sign)
-			throws Exception {
+	public static boolean verify(byte[] data, String publicKey, String sign) throws Exception {
 
 		// 解密由base64编码的公钥
 		byte[] keyBytes = decryptBASE64(publicKey);
@@ -116,8 +110,7 @@ public class DSAEncryptUtil extends EncryptUtil {
 	/**
 	 * 生成密钥
 	 * 
-	 * @param seed
-	 *            种子
+	 * @param seed 种子
 	 * @return 密钥对象
 	 * @throws Exception
 	 */
@@ -157,8 +150,7 @@ public class DSAEncryptUtil extends EncryptUtil {
 	 * @return
 	 * @throws Exception
 	 */
-	public static String getPrivateKey(Map<String, Object> keyMap)
-			throws Exception {
+	public static String getPrivateKey(Map<String, Object> keyMap) throws Exception {
 		Key key = (Key) keyMap.get(PRIVATE_KEY);
 
 		return encryptBASE64(key.getEncoded());
@@ -171,8 +163,7 @@ public class DSAEncryptUtil extends EncryptUtil {
 	 * @return
 	 * @throws Exception
 	 */
-	public static String getPublicKey(Map<String, Object> keyMap)
-			throws Exception {
+	public static String getPublicKey(Map<String, Object> keyMap) throws Exception {
 		Key key = (Key) keyMap.get(PUBLIC_KEY);
 
 		return encryptBASE64(key.getEncoded());

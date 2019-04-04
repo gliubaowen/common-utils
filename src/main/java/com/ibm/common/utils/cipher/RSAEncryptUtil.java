@@ -20,7 +20,7 @@ import javax.crypto.Cipher;
 /**
  * RSA安全编码组件
  * 
- * @author liubaowen
+ * @author LiuBaoWen
  * @version 1.0
  * @since 1.0
  */
@@ -34,10 +34,8 @@ public class RSAEncryptUtil extends EncryptUtil {
 	/**
 	 * 用私钥对信息生成数字签名
 	 * 
-	 * @param data
-	 *            加密数据
-	 * @param privateKey
-	 *            私钥
+	 * @param data       加密数据
+	 * @param privateKey 私钥
 	 * 
 	 * @return
 	 * @throws Exception
@@ -66,19 +64,15 @@ public class RSAEncryptUtil extends EncryptUtil {
 	/**
 	 * 校验数字签名
 	 * 
-	 * @param data
-	 *            加密数据
-	 * @param publicKey
-	 *            公钥
-	 * @param sign
-	 *            数字签名
+	 * @param data      加密数据
+	 * @param publicKey 公钥
+	 * @param sign      数字签名
 	 * 
 	 * @return 校验成功返回true 失败返回false
 	 * @throws Exception
 	 * 
 	 */
-	public static boolean verify(byte[] data, String publicKey, String sign)
-			throws Exception {
+	public static boolean verify(byte[] data, String publicKey, String sign) throws Exception {
 
 		// 解密由base64编码的公钥
 		byte[] keyBytes = decryptBASE64(publicKey);
@@ -109,8 +103,7 @@ public class RSAEncryptUtil extends EncryptUtil {
 	 * @return
 	 * @throws Exception
 	 */
-	public static byte[] decryptByPrivateKey(byte[] data, String key)
-			throws Exception {
+	public static byte[] decryptByPrivateKey(byte[] data, String key) throws Exception {
 		// 对密钥解密
 		byte[] keyBytes = decryptBASE64(key);
 
@@ -135,8 +128,7 @@ public class RSAEncryptUtil extends EncryptUtil {
 	 * @return
 	 * @throws Exception
 	 */
-	public static byte[] decryptByPublicKey(byte[] data, String key)
-			throws Exception {
+	public static byte[] decryptByPublicKey(byte[] data, String key) throws Exception {
 		// 对密钥解密
 		byte[] keyBytes = decryptBASE64(key);
 
@@ -161,8 +153,7 @@ public class RSAEncryptUtil extends EncryptUtil {
 	 * @return
 	 * @throws Exception
 	 */
-	public static byte[] encryptByPublicKey(byte[] data, String key)
-			throws Exception {
+	public static byte[] encryptByPublicKey(byte[] data, String key) throws Exception {
 		// 对公钥解密
 		byte[] keyBytes = decryptBASE64(key);
 
@@ -187,8 +178,7 @@ public class RSAEncryptUtil extends EncryptUtil {
 	 * @return
 	 * @throws Exception
 	 */
-	public static byte[] encryptByPrivateKey(byte[] data, String key)
-			throws Exception {
+	public static byte[] encryptByPrivateKey(byte[] data, String key) throws Exception {
 		// 对密钥解密
 		byte[] keyBytes = decryptBASE64(key);
 
@@ -211,8 +201,7 @@ public class RSAEncryptUtil extends EncryptUtil {
 	 * @return
 	 * @throws Exception
 	 */
-	public static String getPrivateKey(Map<String, Object> keyMap)
-			throws Exception {
+	public static String getPrivateKey(Map<String, Object> keyMap) throws Exception {
 		Key key = (Key) keyMap.get(PRIVATE_KEY);
 
 		return encryptBASE64(key.getEncoded());
@@ -225,8 +214,7 @@ public class RSAEncryptUtil extends EncryptUtil {
 	 * @return
 	 * @throws Exception
 	 */
-	public static String getPublicKey(Map<String, Object> keyMap)
-			throws Exception {
+	public static String getPublicKey(Map<String, Object> keyMap) throws Exception {
 		Key key = (Key) keyMap.get(PUBLIC_KEY);
 
 		return encryptBASE64(key.getEncoded());
@@ -239,8 +227,7 @@ public class RSAEncryptUtil extends EncryptUtil {
 	 * @throws Exception
 	 */
 	public static Map<String, Object> initKey() throws Exception {
-		KeyPairGenerator keyPairGen = KeyPairGenerator
-				.getInstance(KEY_ALGORITHM);
+		KeyPairGenerator keyPairGen = KeyPairGenerator.getInstance(KEY_ALGORITHM);
 		keyPairGen.initialize(1024);
 
 		KeyPair keyPair = keyPairGen.generateKeyPair();

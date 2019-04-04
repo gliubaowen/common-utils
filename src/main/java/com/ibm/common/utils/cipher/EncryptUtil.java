@@ -1,6 +1,5 @@
 package com.ibm.common.utils.cipher;
 
-
 import java.security.MessageDigest;
 
 import javax.crypto.KeyGenerator;
@@ -11,13 +10,10 @@ import javax.crypto.spec.SecretKeySpec;
 import sun.misc.BASE64Decoder;
 import sun.misc.BASE64Encoder;
 
-
-
-
 /**
- * 加密工具类
- * 		BASE64,MD5,SHA,
- * @author liubaowen
+ * 加密工具类 BASE64,MD5,SHA,
+ * 
+ * @author LiuBaoWen
  *
  */
 @SuppressWarnings("restriction")
@@ -68,12 +64,12 @@ public class EncryptUtil {
 	 * @throws Exception
 	 */
 	public static byte[] encryptMD5(byte[] data) throws Exception {
-		
+
 		MessageDigest md5 = MessageDigest.getInstance(KEY_MD5);
 		md5.update(data);
-		
+
 		return md5.digest();
-		
+
 	}
 
 	/**
@@ -84,12 +80,12 @@ public class EncryptUtil {
 	 * @throws Exception
 	 */
 	public static byte[] encryptSHA(byte[] data) throws Exception {
-		
+
 		MessageDigest sha = MessageDigest.getInstance(KEY_SHA);
 		sha.update(data);
-		
+
 		return sha.digest();
-		
+
 	}
 
 	/**
@@ -100,7 +96,7 @@ public class EncryptUtil {
 	 */
 	public static String initMacKey() throws Exception {
 		KeyGenerator keyGenerator = KeyGenerator.getInstance(KEY_MAC);
-		
+
 		SecretKey secretKey = keyGenerator.generateKey();
 		return encryptBASE64(secretKey.getEncoded());
 	}
@@ -114,15 +110,13 @@ public class EncryptUtil {
 	 * @throws Exception
 	 */
 	public static byte[] encryptHMAC(byte[] data, String key) throws Exception {
-		
+
 		SecretKey secretKey = new SecretKeySpec(decryptBASE64(key), KEY_MAC);
 		Mac mac = Mac.getInstance(secretKey.getAlgorithm());
 		mac.init(secretKey);
-		
+
 		return mac.doFinal(data);
-		
+
 	}
 
 }
-
-

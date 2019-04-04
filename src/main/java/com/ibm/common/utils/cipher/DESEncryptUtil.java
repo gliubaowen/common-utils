@@ -1,4 +1,5 @@
 package com.ibm.common.utils.cipher;
+
 import java.security.Key;
 import java.security.SecureRandom;
 
@@ -22,7 +23,7 @@ import javax.crypto.spec.DESKeySpec;
  * 具体内容 需要关注 JDK Document http://.../docs/technotes/guides/security/SunProviders.html
  * </pre>
  * 
- * @author liubaowen
+ * @author LiuBaoWen
  * @version 1.0
  * @since 1.0
  */

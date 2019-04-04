@@ -20,7 +20,7 @@ import javax.crypto.spec.DHParameterSpec;
 /**
  * DH安全编码组件
  * 
- * @author liubaowen
+ * @author LiuBaoWen
  * @version 1.0
  * @since 1.0
  */
@@ -52,8 +52,7 @@ public class DHEncryptUtil extends EncryptUtil {
 	 * @throws Exception
 	 */
 	public static Map<String, Object> initKey() throws Exception {
-		KeyPairGenerator keyPairGenerator = KeyPairGenerator
-				.getInstance(ALGORITHM);
+		KeyPairGenerator keyPairGenerator = KeyPairGenerator.getInstance(ALGORITHM);
 		keyPairGenerator.initialize(KEY_SIZE);
 
 		KeyPair keyPair = keyPairGenerator.generateKeyPair();
@@ -74,8 +73,7 @@ public class DHEncryptUtil extends EncryptUtil {
 	/**
 	 * 初始化乙方密钥
 	 * 
-	 * @param key
-	 *            甲方公钥
+	 * @param key 甲方公钥
 	 * @return
 	 * @throws Exception
 	 */
@@ -89,8 +87,7 @@ public class DHEncryptUtil extends EncryptUtil {
 		// 由甲方公钥构建乙方密钥
 		DHParameterSpec dhParamSpec = ((DHPublicKey) pubKey).getParams();
 
-		KeyPairGenerator keyPairGenerator = KeyPairGenerator
-				.getInstance(keyFactory.getAlgorithm());
+		KeyPairGenerator keyPairGenerator = KeyPairGenerator.getInstance(keyFactory.getAlgorithm());
 		keyPairGenerator.initialize(dhParamSpec);
 
 		KeyPair keyPair = keyPairGenerator.generateKeyPair();
@@ -112,17 +109,13 @@ public class DHEncryptUtil extends EncryptUtil {
 	/**
 	 * 加密<br>
 	 * 
-	 * @param data
-	 *            待加密数据
-	 * @param publicKey
-	 *            甲方公钥
-	 * @param privateKey
-	 *            乙方私钥
+	 * @param data       待加密数据
+	 * @param publicKey  甲方公钥
+	 * @param privateKey 乙方私钥
 	 * @return
 	 * @throws Exception
 	 */
-	public static byte[] encrypt(byte[] data, String publicKey,
-			String privateKey) throws Exception {
+	public static byte[] encrypt(byte[] data, String publicKey, String privateKey) throws Exception {
 
 		// 生成本地密钥
 		SecretKey secretKey = getSecretKey(publicKey, privateKey);
@@ -137,17 +130,13 @@ public class DHEncryptUtil extends EncryptUtil {
 	/**
 	 * 解密<br>
 	 * 
-	 * @param data
-	 *            待解密数据
-	 * @param publicKey
-	 *            乙方公钥
-	 * @param privateKey
-	 *            乙方私钥
+	 * @param data       待解密数据
+	 * @param publicKey  乙方公钥
+	 * @param privateKey 乙方私钥
 	 * @return
 	 * @throws Exception
 	 */
-	public static byte[] decrypt(byte[] data, String publicKey,
-			String privateKey) throws Exception {
+	public static byte[] decrypt(byte[] data, String publicKey, String privateKey) throws Exception {
 
 		// 生成本地密钥
 		SecretKey secretKey = getSecretKey(publicKey, privateKey);
@@ -161,15 +150,12 @@ public class DHEncryptUtil extends EncryptUtil {
 	/**
 	 * 构建密钥
 	 * 
-	 * @param publicKey
-	 *            公钥
-	 * @param privateKey
-	 *            私钥
+	 * @param publicKey  公钥
+	 * @param privateKey 私钥
 	 * @return
 	 * @throws Exception
 	 */
-	private static SecretKey getSecretKey(String publicKey, String privateKey)
-			throws Exception {
+	private static SecretKey getSecretKey(String publicKey, String privateKey) throws Exception {
 		// 初始化公钥
 		byte[] pubKeyBytes = decryptBASE64(publicKey);
 
@@ -183,8 +169,7 @@ public class DHEncryptUtil extends EncryptUtil {
 		PKCS8EncodedKeySpec pkcs8KeySpec = new PKCS8EncodedKeySpec(priKeyBytes);
 		Key priKey = keyFactory.generatePrivate(pkcs8KeySpec);
 
-		KeyAgreement keyAgree = KeyAgreement.getInstance(keyFactory
-				.getAlgorithm());
+		KeyAgreement keyAgree = KeyAgreement.getInstance(keyFactory.getAlgorithm());
 		keyAgree.init(priKey);
 		keyAgree.doPhase(pubKey, true);
 
@@ -201,8 +186,7 @@ public class DHEncryptUtil extends EncryptUtil {
 	 * @return
 	 * @throws Exception
 	 */
-	public static String getPrivateKey(Map<String, Object> keyMap)
-			throws Exception {
+	public static String getPrivateKey(Map<String, Object> keyMap) throws Exception {
 		Key key = (Key) keyMap.get(PRIVATE_KEY);
 
 		return encryptBASE64(key.getEncoded());
@@ -215,8 +199,7 @@ public class DHEncryptUtil extends EncryptUtil {
 	 * @return
 	 * @throws Exception
 	 */
-	public static String getPublicKey(Map<String, Object> keyMap)
-			throws Exception {
+	public static String getPublicKey(Map<String, Object> keyMap) throws Exception {
 		Key key = (Key) keyMap.get(PUBLIC_KEY);
 
 		return encryptBASE64(key.getEncoded());

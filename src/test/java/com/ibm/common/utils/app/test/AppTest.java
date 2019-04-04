@@ -1,4 +1,4 @@
-package com.ibm.common.utils;
+package com.ibm.common.utils.app.test;
 
 import junit.framework.Test;
 import junit.framework.TestCase;
