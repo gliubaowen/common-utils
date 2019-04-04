@@ -14,45 +14,70 @@ import java.util.Date;
  */
 public class CalendarUtils {
 
-	private final static Calendar calendar = Calendar.getInstance();
-
 	public static String DEFAULT_PATTERN = "yyyy-MM-dd";
 
 	public static String DEFAULT_LONG_PATTERN = "yyyy-MM-dd hh:mm:ss";
 
 	/**
-	 * 获取下月第1天 秦桂俊
+	 * 获取下月第一天
+	 * 
+	 * @author LiuBaoWen
+	 * @param startDate
+	 * @return
 	 */
 	public static String nextMonthFirstDate(String startDate) {
 		SimpleDateFormat ymdFormat = new SimpleDateFormat(DEFAULT_PATTERN);
+		Calendar calendar = Calendar.getInstance();
 		calendar.setTime(DateUtils.parseToSqlDate(startDate, DEFAULT_PATTERN));
 		calendar.set(Calendar.DAY_OF_MONTH, 1);
 		calendar.add(Calendar.MONTH, 1);
 		return ymdFormat.format(calendar.getTime());
 	}
 
+	/**
+	 * 获取下一天
+	 * 
+	 * @author LiuBaoWen
+	 * @param startDate
+	 * @return
+	 */
 	public static String nextDate(String startDate) {
 		SimpleDateFormat ymdFormat = new SimpleDateFormat(DEFAULT_PATTERN);
+		Calendar calendar = Calendar.getInstance();
 		calendar.setTime(DateUtils.parseToSqlDate(startDate, DEFAULT_PATTERN));
 		calendar.add(Calendar.DATE, 1);
 		return ymdFormat.format(calendar.getTime());
 	}
 
+	/**
+	 * 获取开始时间
+	 * 
+	 * @author LiuBaoWen
+	 * @param date
+	 * @return
+	 */
 	public static Timestamp getDayStart(Timestamp date) {
 		if (date != null) {
 			long t = date.getTime();
 			Calendar cal = Calendar.getInstance();
 			cal.setTimeInMillis(t);
-			cal.set(Calendar.HOUR_OF_DAY, 0);
-			cal.set(Calendar.SECOND, 0);
-			cal.set(Calendar.MINUTE, 0);
-			cal.set(Calendar.MILLISECOND, 0);
+			cal.set(Calendar.HOUR_OF_DAY, 0);// 0点
+			cal.set(Calendar.SECOND, 0);// 0分
+			cal.set(Calendar.MINUTE, 0);// 0秒
+			cal.set(Calendar.MILLISECOND, 0);// 0毫秒
 			return new Timestamp(cal.getTimeInMillis());
 		}
 
 		return date;
 	}
 
+	/**
+	 * 获取结束时间
+	 * 
+	 * @author LiuBaoWen
+	 * @param date
+	 * @return
+	 */
 	public static Timestamp getDayEnd(Timestamp date) {
 		if (date != null) {
 			long t = date.getTime();
@@ -86,7 +111,7 @@ public class CalendarUtils {
 	}
 
 	/**
-	 * 获得指定日期的前后日期 t为正表示后 负表示前
+	 * 获得指定日期的前后小时 t为正表示后 负表示前
 	 * 
 	 * @param specifiedDay
 	 * @return
@@ -117,7 +142,10 @@ public class CalendarUtils {
 	}
 
 	/**
-	 * 获取当月第1天 秦桂俊
+	 * 获取当月第1天
+	 * 
+	 * @author LiuBaoWen
+	 * @return
 	 */
 	public static String getFisrtDateOfMonth() {
 		Calendar date = Calendar.getInstance();
@@ -352,7 +380,7 @@ public class CalendarUtils {
 	public static Date getFirstDayOfQuarter(Date date) {
 		Calendar calendar = Calendar.getInstance();
 		calendar.setTime(date);
-		return getFirstDayOfQuarter(calendar.get(Calendar.YEAR), getQuarterOfYear(date));
+		return getFirstDayOfQuarter(calendar.get(Calendar.YEAR), getSeasonOfYear(date));
 	}
 
 	/**
@@ -389,7 +417,7 @@ public class CalendarUtils {
 	public static Date getLastDayOfQuarter(Date date) {
 		Calendar calendar = Calendar.getInstance();
 		calendar.setTime(date);
-		return getLastDayOfQuarter(calendar.get(Calendar.YEAR), getQuarterOfYear(date));
+		return getLastDayOfQuarter(calendar.get(Calendar.YEAR), getSeasonOfYear(date));
 	}
 
 	/**
@@ -426,7 +454,7 @@ public class CalendarUtils {
 	public static Date getLastDayOfLastQuarter(Date date) {
 		Calendar calendar = Calendar.getInstance();
 		calendar.setTime(date);
-		return getLastDayOfLastQuarter(calendar.get(Calendar.YEAR), getQuarterOfYear(date));
+		return getLastDayOfLastQuarter(calendar.get(Calendar.YEAR), getSeasonOfYear(date));
 	}
 
 	/**
@@ -459,7 +487,7 @@ public class CalendarUtils {
 	 * @param date
 	 * @return
 	 */
-	public static int getQuarterOfYear(Date date) {
+	public static int getSeasonOfYear(Date date) {
 		Calendar calendar = Calendar.getInstance();
 		calendar.setTime(date);
 		return calendar.get(Calendar.MONTH) / 3 + 1;

@@ -18,28 +18,14 @@ public class DateUtils {
 	public static final String HOUR_PATTERN = "yyyy-MM-dd HH:mm:ss";
 	public static final String DATE_PATTERN = "yyyy-MM-dd";
 	public static final String MONTH_PATTERN = "yyyy-MM";
-	public static final String YEAR_PATTERN = "yyyy";
-	public static final String MINUTE_ONLY_PATTERN = "mm";
+	
+	public static final String YEAR_ONLY_PATTERN = "yyyy";
+	public static final String MONTH_ONLY_PATTERN = "MM";
+	public static final String DAY_ONLY_PATTERN = "dd";
 	public static final String HOUR_ONLY_PATTERN = "HH";
-
-	/**
-	 * 判断日期是否在范围内
-	 * 
-	 * @author LiuBaoWen
-	 * @param startDate
-	 * @param endDate
-	 * @param date
-	 * @return
-	 */
-	public static boolean isDateValidInRange(String startDate, String endDate, String date) {
-		Date startTime = DateUtils.parseToSqlDate(startDate, DEFAULT_PATTERN);
-		Date endTime = DateUtils.parseToSqlDate(endDate, DEFAULT_PATTERN);
-		Date currentDate = DateUtils.parseToSqlDate(date, DEFAULT_PATTERN);
-		if (currentDate.compareTo(startTime) >= 0 && currentDate.compareTo(endTime) <= 0) {
-			return true;
-		}
-		return false;
-	}
+	public static final String MINUTE_ONLY_PATTERN = "mm";
+	
+	public static final String HOUR_ONLY_PATTERN_temp = "yyyy-MM-dd HH:mm:ss.SSS";
 
 	/**
 	 * Date 转 String
@@ -185,6 +171,59 @@ public class DateUtils {
 	 */
 	public static Date timestampToDate(Timestamp timestamp) {
 		return new Date(timestamp.getTime());
+	}
+
+	/**
+	 * 将Date转化为Timestamp
+	 * 
+	 * @author LiuBaoWen
+	 * @param date
+	 * @return
+	 */
+	public static Timestamp dateToTimestamp(Date date) {
+		return new Timestamp(date.getTime());
+	}
+
+	/**
+	 * 判断日期是否在范围内
+	 * 
+	 * @author LiuBaoWen
+	 * @param startDate
+	 * @param endDate
+	 * @param date
+	 * @return
+	 */
+	public static boolean isDateValidInRange(String startDate, String endDate, String date) {
+		Date startTime = parseToDate(startDate, DEFAULT_PATTERN);
+		Date endTime = parseToDate(endDate, DEFAULT_PATTERN);
+		Date currentDate = parseToDate(date, DEFAULT_PATTERN);
+		if (currentDate.compareTo(startTime) >= 0 && currentDate.compareTo(endTime) <= 0) {
+			return true;
+		}
+		return false;
+	}
+
+	/**
+	 * 
+	 * @author LiuBaoWen
+	 * @return
+	 */
+	public static boolean checkPattern() {
+
+		return false;
+	}
+
+	/**
+	 * 获取当前timestamp()
+	 * 
+	 * @param pattern if format==null, return yyyy-MM-dd HH:mm:ss
+	 * @return
+	 */
+	public static Timestamp getCurrentTimeStamp(String pattern) {
+		SimpleDateFormat df = new SimpleDateFormat(pattern);
+		String time = df.format(new Date());
+		Timestamp ts = Timestamp.valueOf(time);
+		return ts;
 	}
 
 }
