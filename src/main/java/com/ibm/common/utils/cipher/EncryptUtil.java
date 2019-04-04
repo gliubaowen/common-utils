@@ -18,6 +18,7 @@ import sun.misc.BASE64Encoder;
  */
 @SuppressWarnings("restriction")
 public class EncryptUtil {
+
 	public static final String KEY_SHA = "SHA";
 	public static final String KEY_MD5 = "MD5";
 
@@ -37,6 +38,7 @@ public class EncryptUtil {
 	/**
 	 * BASE64解密
 	 * 
+	 * @author LiuBaoWen
 	 * @param key
 	 * @return
 	 * @throws Exception
@@ -48,6 +50,7 @@ public class EncryptUtil {
 	/**
 	 * BASE64加密
 	 * 
+	 * @author LiuBaoWen
 	 * @param key
 	 * @return
 	 * @throws Exception
@@ -59,44 +62,40 @@ public class EncryptUtil {
 	/**
 	 * MD5加密
 	 * 
+	 * @author LiuBaoWen
 	 * @param data
 	 * @return
 	 * @throws Exception
 	 */
 	public static byte[] encryptMD5(byte[] data) throws Exception {
-
 		MessageDigest md5 = MessageDigest.getInstance(KEY_MD5);
 		md5.update(data);
-
 		return md5.digest();
-
 	}
 
 	/**
 	 * SHA加密
 	 * 
+	 * @author LiuBaoWen
 	 * @param data
 	 * @return
 	 * @throws Exception
 	 */
 	public static byte[] encryptSHA(byte[] data) throws Exception {
-
 		MessageDigest sha = MessageDigest.getInstance(KEY_SHA);
 		sha.update(data);
-
 		return sha.digest();
-
 	}
 
 	/**
 	 * 初始化HMAC密钥
 	 * 
+	 * @author LiuBaoWen
 	 * @return
 	 * @throws Exception
 	 */
 	public static String initMacKey() throws Exception {
 		KeyGenerator keyGenerator = KeyGenerator.getInstance(KEY_MAC);
-
 		SecretKey secretKey = keyGenerator.generateKey();
 		return encryptBASE64(secretKey.getEncoded());
 	}
@@ -104,19 +103,17 @@ public class EncryptUtil {
 	/**
 	 * HMAC加密
 	 * 
+	 * @author LiuBaoWen
 	 * @param data
 	 * @param key
 	 * @return
 	 * @throws Exception
 	 */
 	public static byte[] encryptHMAC(byte[] data, String key) throws Exception {
-
 		SecretKey secretKey = new SecretKeySpec(decryptBASE64(key), KEY_MAC);
 		Mac mac = Mac.getInstance(secretKey.getAlgorithm());
 		mac.init(secretKey);
-
 		return mac.doFinal(data);
-
 	}
 
 }
