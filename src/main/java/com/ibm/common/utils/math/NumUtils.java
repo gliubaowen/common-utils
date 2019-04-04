@@ -7,7 +7,6 @@
  */
 package com.ibm.common.utils.math;
 
-import java.security.SecureRandom;
 import java.util.regex.Pattern;
 
 /**
