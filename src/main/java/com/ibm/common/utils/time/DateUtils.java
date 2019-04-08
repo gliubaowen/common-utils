@@ -18,13 +18,13 @@ public class DateUtils {
 	public static final String HOUR_PATTERN = "yyyy-MM-dd HH:mm:ss";
 	public static final String DATE_PATTERN = "yyyy-MM-dd";
 	public static final String MONTH_PATTERN = "yyyy-MM";
-	
+
 	public static final String YEAR_ONLY_PATTERN = "yyyy";
 	public static final String MONTH_ONLY_PATTERN = "MM";
 	public static final String DAY_ONLY_PATTERN = "dd";
 	public static final String HOUR_ONLY_PATTERN = "HH";
 	public static final String MINUTE_ONLY_PATTERN = "mm";
-	
+
 	public static final String HOUR_ONLY_PATTERN_temp = "yyyy-MM-dd HH:mm:ss.SSS";
 
 	/**
@@ -185,6 +185,19 @@ public class DateUtils {
 	}
 
 	/**
+	 * 获取当前timestamp()
+	 * 
+	 * @param pattern if format==null, return yyyy-MM-dd HH:mm:ss
+	 * @return
+	 */
+	public static Timestamp getCurrentTimeStamp(String pattern) {
+		SimpleDateFormat sdf = new SimpleDateFormat(pattern);
+		String time = sdf.format(new Date());
+		Timestamp ts = Timestamp.valueOf(time);
+		return ts;
+	}
+
+	/**
 	 * 判断日期是否在范围内
 	 * 
 	 * @author LiuBaoWen
@@ -204,6 +217,7 @@ public class DateUtils {
 	}
 
 	/**
+	 * 校验传入的Pattern
 	 * 
 	 * @author LiuBaoWen
 	 * @return
@@ -211,19 +225,6 @@ public class DateUtils {
 	public static boolean checkPattern() {
 
 		return false;
-	}
-
-	/**
-	 * 获取当前timestamp()
-	 * 
-	 * @param pattern if format==null, return yyyy-MM-dd HH:mm:ss
-	 * @return
-	 */
-	public static Timestamp getCurrentTimeStamp(String pattern) {
-		SimpleDateFormat df = new SimpleDateFormat(pattern);
-		String time = df.format(new Date());
-		Timestamp ts = Timestamp.valueOf(time);
-		return ts;
 	}
 
 }
