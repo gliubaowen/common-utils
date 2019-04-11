@@ -7,4 +7,4 @@
  * @author LiuBaoWen
  *
  */
-package com.ibm.common.annotation;
+package com.ibm.common.utils.annotation;

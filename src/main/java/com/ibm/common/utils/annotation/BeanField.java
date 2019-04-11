@@ -1,4 +1,4 @@
-package com.ibm.common.annotation;
+package com.ibm.common.utils.annotation;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
