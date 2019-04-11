@@ -24,7 +24,7 @@ import javax.crypto.spec.DHParameterSpec;
  * @version 1.0
  * @since 1.0
  */
-public class DHEncryptUtil extends EncryptUtil {
+public class DHEncryptUtils extends EncryptUtils {
 	public static final String ALGORITHM = "DH";
 
 	/**

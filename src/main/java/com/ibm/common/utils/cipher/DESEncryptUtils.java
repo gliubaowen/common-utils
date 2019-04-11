@@ -27,7 +27,7 @@ import javax.crypto.spec.DESKeySpec;
  * @version 1.0
  * @since 1.0
  */
-public class DESEncryptUtil extends EncryptUtil {
+public class DESEncryptUtils extends EncryptUtils {
 	/**
 	 * ALGORITHM 算法 <br>
 	 * 可替换为以下任意一种算法，同时key值的size相应改变。

@@ -8,11 +8,11 @@ package com.ibm.common.utils.cipher.test;
 import java.math.BigInteger;
 import java.util.Map;
 
-import com.ibm.common.utils.cipher.DESEncryptUtil;
-import com.ibm.common.utils.cipher.DSAEncryptUtil;
-import com.ibm.common.utils.cipher.EncryptUtil;
-import com.ibm.common.utils.cipher.PBEEncryptUtil;
-import com.ibm.common.utils.cipher.RSAEncryptUtil;
+import com.ibm.common.utils.cipher.DESEncryptUtils;
+import com.ibm.common.utils.cipher.DSAEncryptUtils;
+import com.ibm.common.utils.cipher.EncryptUtils;
+import com.ibm.common.utils.cipher.PBEEncryptUtils;
+import com.ibm.common.utils.cipher.RSAEncryptUtils;
 
 import junit.framework.TestCase;
 
@@ -24,7 +24,7 @@ import junit.framework.TestCase;
  * @author LiuBaoWen
  *
  */
-public class EncryptUtilTest extends TestCase {
+public class EncryptUtilsTest extends TestCase {
 	
 	public void test() {}
 	
@@ -33,11 +33,11 @@ public class EncryptUtilTest extends TestCase {
 		System.err.println("原文:\n" + inputStr);
 
 		byte[] inputData = inputStr.getBytes();
-		String code = EncryptUtil.encryptBASE64(inputData);
+		String code = EncryptUtils.encryptBASE64(inputData);
 
 		System.err.println("BASE64加密后:\n" + code);
 
-		byte[] output = EncryptUtil.decryptBASE64(code);
+		byte[] output = EncryptUtils.decryptBASE64(code);
 
 		String outputStr = new String(output);
 
@@ -54,39 +54,39 @@ public class EncryptUtilTest extends TestCase {
 //		assertArrayEquals(EncryptUtil.encryptSHA(inputData), EncryptUtil
 //				.encryptSHA(inputData));
 
-		String key = EncryptUtil.initMacKey();
+		String key = EncryptUtils.initMacKey();
 		System.err.println("Mac密钥:\n" + key);
 
 		// 验证HMAC对于同一内容，同一密钥加密是否一致
 //		assertArrayEquals(EncryptUtil.encryptHMAC(inputData, key), EncryptUtil.encryptHMAC(
 //				inputData, key));
 
-		BigInteger md5 = new BigInteger(EncryptUtil.encryptMD5(inputData));
+		BigInteger md5 = new BigInteger(EncryptUtils.encryptMD5(inputData));
 		System.err.println("MD5:\n" + md5.toString(16));
 
-		BigInteger sha = new BigInteger(EncryptUtil.encryptSHA(inputData));
+		BigInteger sha = new BigInteger(EncryptUtils.encryptSHA(inputData));
 		System.err.println("SHA:\n" + sha.toString(32));
 
-		BigInteger mac = new BigInteger(EncryptUtil.encryptHMAC(inputData, inputStr));
+		BigInteger mac = new BigInteger(EncryptUtils.encryptHMAC(inputData, inputStr));
 		System.err.println("HMAC:\n" + mac.toString(16));
 	}
 
 	public void DESEncryptTest() throws Exception {
 		String inputStr = "DES12";
-		String key = DESEncryptUtil.initKey("abc");
+		String key = DESEncryptUtils.initKey("abc");
 		System.err.println("原文:\t" + inputStr);
 
 		System.err.println("密钥:\t" + key);
 
 		byte[] inputData = inputStr.getBytes();
-		inputData = DESEncryptUtil.encrypt(inputData, key);
+		inputData = DESEncryptUtils.encrypt(inputData, key);
 
-		String encryptBASE64 = DESEncryptUtil.encryptBASE64(inputData);
+		String encryptBASE64 = DESEncryptUtils.encryptBASE64(inputData);
 		System.err.println("加密后:\t" + encryptBASE64);
 
-		byte[] decryptBASE64 = DESEncryptUtil.decryptBASE64(encryptBASE64);
+		byte[] decryptBASE64 = DESEncryptUtils.decryptBASE64(encryptBASE64);
 		
-		byte[] outputData = DESEncryptUtil.decrypt(decryptBASE64, key);
+		byte[] outputData = DESEncryptUtils.decrypt(decryptBASE64, key);
 		
 		String outputStr = new String(outputData);
 
@@ -102,13 +102,13 @@ public class EncryptUtilTest extends TestCase {
 		String pwd = "efg";
 		System.err.println("密码: " + pwd);
  
-		byte[] salt = PBEEncryptUtil.initSalt();
+		byte[] salt = PBEEncryptUtils.initSalt();
  
-		byte[] data = PBEEncryptUtil.encrypt(input, pwd, salt);
+		byte[] data = PBEEncryptUtils.encrypt(input, pwd, salt);
  
-		System.err.println("加密后: " + PBEEncryptUtil.encryptBASE64(data));
+		System.err.println("加密后: " + PBEEncryptUtils.encryptBASE64(data));
  
-		byte[] output = PBEEncryptUtil.decrypt(data, pwd, salt);
+		byte[] output = PBEEncryptUtils.decrypt(data, pwd, salt);
 		String outputStr = new String(output);
  
 		System.err.println("解密后: " + outputStr);
@@ -130,9 +130,9 @@ public class EncryptUtilTest extends TestCase {
 
 	public void RSAEncryptTest() throws Exception {
 		
-		Map<String, Object> keyMap = RSAEncryptUtil.initKey();
-		publicKey = RSAEncryptUtil.getPublicKey(keyMap);
-		privateKey = RSAEncryptUtil.getPrivateKey(keyMap);
+		Map<String, Object> keyMap = RSAEncryptUtils.initKey();
+		publicKey = RSAEncryptUtils.getPublicKey(keyMap);
+		privateKey = RSAEncryptUtils.getPrivateKey(keyMap);
 		System.err.println("公钥: \n\r" + publicKey);
 		System.err.println("私钥： \n\r" + privateKey);
 		
@@ -140,9 +140,9 @@ public class EncryptUtilTest extends TestCase {
 		String inputStr = "abc";
 		byte[] data = inputStr.getBytes();
 
-		byte[] encodedData = RSAEncryptUtil.encryptByPublicKey(data, publicKey);
+		byte[] encodedData = RSAEncryptUtils.encryptByPublicKey(data, publicKey);
 
-		byte[] decodedData = RSAEncryptUtil.decryptByPrivateKey(encodedData,
+		byte[] decodedData = RSAEncryptUtils.decryptByPrivateKey(encodedData,
 				privateKey);
 
 		String outputStr = new String(decodedData);
@@ -153,9 +153,9 @@ public class EncryptUtilTest extends TestCase {
 
 	public void RSAEncryptTestSign() throws Exception {
 		
-		Map<String, Object> keyMap = RSAEncryptUtil.initKey();
-		publicKey = RSAEncryptUtil.getPublicKey(keyMap);
-		privateKey = RSAEncryptUtil.getPrivateKey(keyMap);
+		Map<String, Object> keyMap = RSAEncryptUtils.initKey();
+		publicKey = RSAEncryptUtils.getPublicKey(keyMap);
+		privateKey = RSAEncryptUtils.getPrivateKey(keyMap);
 		System.err.println("公钥: \n\r" + publicKey);
 		System.err.println("私钥： \n\r" + privateKey);
 		
@@ -163,9 +163,9 @@ public class EncryptUtilTest extends TestCase {
 		String inputStr = "sign";
 		byte[] data = inputStr.getBytes();
 
-		byte[] encodedData = RSAEncryptUtil.encryptByPrivateKey(data, privateKey);
+		byte[] encodedData = RSAEncryptUtils.encryptByPrivateKey(data, privateKey);
 
-		byte[] decodedData = RSAEncryptUtil
+		byte[] decodedData = RSAEncryptUtils
 				.decryptByPublicKey(encodedData, publicKey);
 
 		String outputStr = new String(decodedData);
@@ -174,11 +174,11 @@ public class EncryptUtilTest extends TestCase {
 
 		System.err.println("私钥签名——公钥验证签名");
 		// 产生签名
-		String sign = RSAEncryptUtil.sign(encodedData, privateKey);
+		String sign = RSAEncryptUtils.sign(encodedData, privateKey);
 		System.err.println("签名:\r" + sign);
 
 		// 验证签名
-		boolean status = RSAEncryptUtil.verify(encodedData, publicKey, sign);
+		boolean status = RSAEncryptUtils.verify(encodedData, publicKey, sign);
 		System.err.println("状态:\r" + status);
 //		assertTrue(status);
 
@@ -238,21 +238,21 @@ public class EncryptUtilTest extends TestCase {
 		byte[] data = inputStr.getBytes();
 
 		// 构建密钥
-		Map<String, Object> keyMap = DSAEncryptUtil.initKey();
+		Map<String, Object> keyMap = DSAEncryptUtils.initKey();
 
 		// 获得密钥
-		String publicKey = DSAEncryptUtil.getPublicKey(keyMap);
-		String privateKey = DSAEncryptUtil.getPrivateKey(keyMap);
+		String publicKey = DSAEncryptUtils.getPublicKey(keyMap);
+		String privateKey = DSAEncryptUtils.getPrivateKey(keyMap);
 
 		System.err.println("公钥:\r" + publicKey);
 		System.err.println("私钥:\r" + privateKey);
 
 		// 产生签名
-		String sign = DSAEncryptUtil.sign(data, privateKey);
+		String sign = DSAEncryptUtils.sign(data, privateKey);
 		System.err.println("签名:\r" + sign);
 
 		// 验证签名
-		boolean status = DSAEncryptUtil.verify(data, publicKey, sign);
+		boolean status = DSAEncryptUtils.verify(data, publicKey, sign);
 		System.err.println("状态:\r" + status);
 //		assertTrue(status);
 

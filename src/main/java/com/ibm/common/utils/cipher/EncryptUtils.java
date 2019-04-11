@@ -17,7 +17,7 @@ import sun.misc.BASE64Encoder;
  *
  */
 @SuppressWarnings("restriction")
-public class EncryptUtil {
+public class EncryptUtils {
 
 	public static final String KEY_SHA = "SHA";
 	public static final String KEY_MD5 = "MD5";

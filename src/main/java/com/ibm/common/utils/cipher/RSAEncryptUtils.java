@@ -24,7 +24,7 @@ import javax.crypto.Cipher;
  * @version 1.0
  * @since 1.0
  */
-public class RSAEncryptUtil extends EncryptUtil {
+public class RSAEncryptUtils extends EncryptUtils {
 	public static final String KEY_ALGORITHM = "RSA";
 	public static final String SIGNATURE_ALGORITHM = "MD5withRSA";
 

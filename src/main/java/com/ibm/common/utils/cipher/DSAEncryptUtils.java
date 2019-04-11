@@ -22,7 +22,7 @@ import java.util.Map;
  * @version 1.0
  * @since 1.0
  */
-public class DSAEncryptUtil extends EncryptUtil {
+public class DSAEncryptUtils extends EncryptUtils {
 	public static final String ALGORITHM = "DSA";
 
 	/**

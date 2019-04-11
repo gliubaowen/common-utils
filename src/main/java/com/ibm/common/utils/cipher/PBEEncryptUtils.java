@@ -16,7 +16,7 @@ import javax.crypto.spec.PBEParameterSpec;
  * @version 1.0
  * @since 1.0
  */
-public class PBEEncryptUtil extends EncryptUtil {
+public class PBEEncryptUtils extends EncryptUtils {
 	/**
 	 * 支持以下任意一种算法
 	 * 
