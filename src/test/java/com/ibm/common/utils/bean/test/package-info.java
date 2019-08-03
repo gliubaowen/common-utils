@@ -5,4 +5,4 @@
  * @author LiuBaoWen
  *
  */
-package com.ibm.common.utils.app;
+package com.ibm.common.utils.bean.test;
