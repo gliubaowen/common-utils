@@ -21,7 +21,7 @@ import sun.security.ec.ECPublicKeyImpl;
  * @version 1.0
  * @since 1.0
  */
-@SuppressWarnings({ "restriction" })
+@SuppressWarnings("restriction")
 public class ECCEncryptUtils extends EncryptUtils {
 	public static final String ALGORITHM = "EC";
 	private static final String PUBLIC_KEY = "ECCPublicKey";

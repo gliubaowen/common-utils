@@ -1,14 +1,14 @@
 package com.ibm.common.utils.cipher.test;
 
 
-//import static org.junit.Assert.assertArrayEquals;
-//import static org.junit.Assert.assertEquals;
-//import static org.junit.Assert.assertTrue;
+
+import static org.junit.Assert.assertArrayEquals;
 
 import java.math.BigInteger;
 import java.util.Map;
 
 import com.ibm.common.utils.cipher.DESEncryptUtils;
+import com.ibm.common.utils.cipher.DHEncryptUtils;
 import com.ibm.common.utils.cipher.DSAEncryptUtils;
 import com.ibm.common.utils.cipher.EncryptUtils;
 import com.ibm.common.utils.cipher.PBEEncryptUtils;
@@ -26,8 +26,6 @@ import junit.framework.TestCase;
  */
 public class EncryptUtilsTest extends TestCase {
 	
-	public void test() {}
-	
 	public void SimpleEncryptTest() throws Exception {
 		String inputStr = "简单加密";
 		System.err.println("原文:\n" + inputStr);
@@ -44,22 +42,22 @@ public class EncryptUtilsTest extends TestCase {
 		System.err.println("BASE64解密后:\n" + outputStr);
 
 		// 验证BASE64加密解密一致性
-//		assertEquals(inputStr, outputStr);
+		assertEquals(inputStr, outputStr);
 
 		// 验证MD5对于同一内容加密是否一致
-//		assertArrayEquals(EncryptUtil.encryptMD5(inputData), EncryptUtil
-//				.encryptMD5(inputData));
+		assertArrayEquals(EncryptUtils.encryptMD5(inputData), EncryptUtils
+				.encryptMD5(inputData));
 
 		// 验证SHA对于同一内容加密是否一致
-//		assertArrayEquals(EncryptUtil.encryptSHA(inputData), EncryptUtil
-//				.encryptSHA(inputData));
+		assertArrayEquals(EncryptUtils.encryptSHA(inputData), EncryptUtils
+				.encryptSHA(inputData));
 
 		String key = EncryptUtils.initMacKey();
 		System.err.println("Mac密钥:\n" + key);
 
 		// 验证HMAC对于同一内容，同一密钥加密是否一致
-//		assertArrayEquals(EncryptUtil.encryptHMAC(inputData, key), EncryptUtil.encryptHMAC(
-//				inputData, key));
+		assertArrayEquals(EncryptUtils.encryptHMAC(inputData, key), EncryptUtils.encryptHMAC(
+				inputData, key));
 
 		BigInteger md5 = new BigInteger(EncryptUtils.encryptMD5(inputData));
 		System.err.println("MD5:\n" + md5.toString(16));
@@ -112,7 +110,7 @@ public class EncryptUtilsTest extends TestCase {
 		String outputStr = new String(output);
  
 		System.err.println("解密后: " + outputStr);
-//		assertEquals(inputStr, outputStr);
+		assertEquals(inputStr, outputStr);
 	}
 	
 	private String publicKey;
@@ -147,7 +145,7 @@ public class EncryptUtilsTest extends TestCase {
 
 		String outputStr = new String(decodedData);
 		System.err.println("加密前: " + inputStr + "\n\r" + "解密后: " + outputStr);
-//		assertEquals(inputStr, outputStr);
+		assertEquals(inputStr, outputStr);
 
 	}
 
@@ -170,7 +168,7 @@ public class EncryptUtilsTest extends TestCase {
 
 		String outputStr = new String(decodedData);
 		System.err.println("加密前: " + inputStr + "\n\r" + "解密后: " + outputStr);
-//		assertEquals(inputStr, outputStr);
+		assertEquals(inputStr, outputStr);
 
 		System.err.println("私钥签名——公钥验证签名");
 		// 产生签名
@@ -180,23 +178,23 @@ public class EncryptUtilsTest extends TestCase {
 		// 验证签名
 		boolean status = RSAEncryptUtils.verify(encodedData, publicKey, sign);
 		System.err.println("状态:\r" + status);
-//		assertTrue(status);
+		assertTrue(status);
 
 	}
 	
-/*	public void DHEncryptTest() throws Exception {
+	public void DHEncryptTest() throws Exception {
 		// 生成甲方密钥对儿
-		Map<String, Object> aKeyMap = DHEncryptUtil.initKey();
-		String aPublicKey = DHEncryptUtil.getPublicKey(aKeyMap);
-		String aPrivateKey = DHEncryptUtil.getPrivateKey(aKeyMap);
+		Map<String, Object> aKeyMap = DHEncryptUtils.initKey();
+		String aPublicKey = DHEncryptUtils.getPublicKey(aKeyMap);
+		String aPrivateKey = DHEncryptUtils.getPrivateKey(aKeyMap);
 
 		System.err.println("甲方公钥:\r" + aPublicKey);
 		System.err.println("甲方私钥:\r" + aPrivateKey);
 		
 		// 由甲方公钥产生本地密钥对儿
-		Map<String, Object> bKeyMap = DHEncryptUtil.initKey(aPublicKey);
-		String bPublicKey = DHEncryptUtil.getPublicKey(bKeyMap);
-		String bPrivateKey = DHEncryptUtil.getPrivateKey(bKeyMap);
+		Map<String, Object> bKeyMap = DHEncryptUtils.initKey(aPublicKey);
+		String bPublicKey = DHEncryptUtils.getPublicKey(bKeyMap);
+		String bPrivateKey = DHEncryptUtils.getPrivateKey(bKeyMap);
 		
 		System.err.println("乙方公钥:\r" + bPublicKey);
 		System.err.println("乙方私钥:\r" + bPrivateKey);
@@ -205,33 +203,33 @@ public class EncryptUtilsTest extends TestCase {
 		System.err.println("原文: " + aInput);
 
 		// 由甲方公钥，乙方私钥构建密文
-		byte[] aCode = DHEncryptUtil.encrypt(aInput.getBytes(), aPublicKey,
+		byte[] aCode = DHEncryptUtils.encrypt(aInput.getBytes(), aPublicKey,
 				bPrivateKey);
 
 		// 由乙方公钥，甲方私钥解密
-		byte[] aDecode = DHEncryptUtil.decrypt(aCode, bPublicKey, aPrivateKey);
+		byte[] aDecode = DHEncryptUtils.decrypt(aCode, bPublicKey, aPrivateKey);
 		String aOutput = (new String(aDecode));
 
 		System.err.println("解密: " + aOutput);
 
-//		assertEquals(aInput, aOutput);
+		assertEquals(aInput, aOutput);
 
 		System.err.println(" ===============反过来加密解密================== ");
 		String bInput = "def ";
 		System.err.println("原文: " + bInput);
 
 		// 由乙方公钥，甲方私钥构建密文
-		byte[] bCode = DHEncryptUtil.encrypt(bInput.getBytes(), bPublicKey,
+		byte[] bCode = DHEncryptUtils.encrypt(bInput.getBytes(), bPublicKey,
 				aPrivateKey);
 
 		// 由甲方公钥，乙方私钥解密
-		byte[] bDecode = DHEncryptUtil.decrypt(bCode, aPublicKey, bPrivateKey);
+		byte[] bDecode = DHEncryptUtils.decrypt(bCode, aPublicKey, bPrivateKey);
 		String bOutput = (new String(bDecode));
 
 		System.err.println("解密: " + bOutput);
 
-//		assertEquals(bInput, bOutput);
-	}*/
+		assertEquals(bInput, bOutput);
+	}
 
 	public void DSAEncryptTest() throws Exception {
 		String inputStr = "abc";
@@ -254,7 +252,7 @@ public class EncryptUtilsTest extends TestCase {
 		// 验证签名
 		boolean status = DSAEncryptUtils.verify(data, publicKey, sign);
 		System.err.println("状态:\r" + status);
-//		assertTrue(status);
+		assertTrue(status);
 
 	}
 	
