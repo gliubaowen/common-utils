@@ -4,7 +4,7 @@ import java.io.File;
 import java.io.IOException;
 
 /**
- * 文件工具类
+ * 文件操作工具类
  * 
  * @author LiuBaoWen
  *

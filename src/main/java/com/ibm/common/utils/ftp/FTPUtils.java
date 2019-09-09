@@ -79,13 +79,13 @@ public class FTPUtils {
 				closeFTPClient();
 				// 释放空间
 				ftp = null;
-				throw new Exception("登录FTP服务器失败,请检查![Server:" + server + "、" + "User:" + uname
-						+ "、" + "Password:" + password);
+				throw new Exception(
+						"登录FTP服务器失败,请检查![Server:" + server + "、" + "User:" + uname + "、" + "Password:" + password);
 			} else {
 				return ftp;
 			}
 		} catch (Exception e) {
-			if(null != ftp){
+			if (null != ftp) {
 				ftp.disconnect();
 			}
 			ftp = null;
@@ -95,6 +95,7 @@ public class FTPUtils {
 
 	/**
 	 * 配置FTP连接参数
+	 * 
 	 * @throws Exception
 	 */
 	public FTPClientConfig getFTPClientConfig() throws Exception {
@@ -110,8 +111,7 @@ public class FTPUtils {
 	 * 向FTP根目录上传文件
 	 * 
 	 * @param localFile
-	 * @param newName
-	 *            新文件名
+	 * @param newName   新文件名
 	 * @throws Exception
 	 */
 	public Boolean uploadFile(String localFile, String newName) throws Exception {
@@ -141,8 +141,7 @@ public class FTPUtils {
 	 * 向FTP根目录上传文件
 	 * 
 	 * @param input
-	 * @param newName
-	 *            新文件名
+	 * @param newName 新文件名
 	 * @throws Exception
 	 */
 	public Boolean uploadFile(InputStream input, String newName) throws Exception {
@@ -163,13 +162,11 @@ public class FTPUtils {
 	 * 向FTP指定路径上传文件
 	 * 
 	 * @param localFile
-	 * @param newName
-	 *            新文件名
+	 * @param newName        新文件名
 	 * @param remoteFoldPath
 	 * @throws Exception
 	 */
-	public Boolean uploadFile(String localFile, String newName, String remoteFoldPath)
-			throws Exception {
+	public Boolean uploadFile(String localFile, String newName, String remoteFoldPath) throws Exception {
 
 		InputStream input = null;
 		boolean success = false;
@@ -202,13 +199,11 @@ public class FTPUtils {
 	 * 向FTP指定路径上传文件
 	 * 
 	 * @param input
-	 * @param newName
-	 *            新文件名
+	 * @param newName        新文件名
 	 * @param remoteFoldPath
 	 * @throws Exception
 	 */
-	public Boolean uploadFile(InputStream input, String newName, String remoteFoldPath)
-			throws Exception {
+	public Boolean uploadFile(InputStream input, String newName, String remoteFoldPath) throws Exception {
 		boolean success = false;
 		try {
 			// 改变当前路径到指定路径
@@ -232,15 +227,11 @@ public class FTPUtils {
 	/**
 	 * 从FTP服务器下载文件
 	 * 
-	 * @param remotePath
-	 *            FTP路径(不包含文件名)
-	 * @param fileName
-	 *            下载文件名
-	 * @param localPath
-	 *            本地路径
+	 * @param remotePath FTP路径(不包含文件名)
+	 * @param fileName   下载文件名
+	 * @param localPath  本地路径
 	 */
-	public Boolean downloadFile(String remotePath, String fileName, String localPath)
-			throws Exception {
+	public Boolean downloadFile(String remotePath, String fileName, String localPath) throws Exception {
 
 		BufferedOutputStream output = null;
 		boolean success = false;
@@ -410,25 +401,25 @@ public class FTPUtils {
 		success = deleteFold(remoteFoldPath);
 		return success;
 	}
-	
-	//创建多级文件夹
-		public void mkdirs(String dir) throws Exception {  
-	        if (dir == null) {  
-	            return;  
-	        }  
-	        dir = dir.replace("//", "/");  
-	        String[] dirs = dir.split("/");  
-	        for (int i = 0; i < dirs.length; i++) {  
-	            dir = dirs[i];  
-	            if (!StringUtils.isEmpty(dir)) {  
-	            	try{
-	                	createFold(dir);  
-	            	}catch(Exception e){
-	            	}
-	                    changeDirectory(dir);  
-	            }  
-	        }  
-	    }
+
+	// 创建多级文件夹
+	public void mkdirs(String dir) throws Exception {
+		if (dir == null) {
+			return;
+		}
+		dir = dir.replace("//", "/");
+		String[] dirs = dir.split("/");
+		for (int i = 0; i < dirs.length; i++) {
+			dir = dirs[i];
+			if (!StringUtils.isEmpty(dir)) {
+				try {
+					createFold(dir);
+				} catch (Exception e) {
+				}
+				changeDirectory(dir);
+			}
+		}
+	}
 
 	/**
 	 * 检查本地路径是否存在
@@ -447,9 +438,6 @@ public class FTPUtils {
 		}
 		return flag;
 	}
-	
-	
-	
 
 	/**
 	 * 关闭FTP连接
@@ -467,8 +455,6 @@ public class FTPUtils {
 			throw new Exception("关闭FTP服务出错!");
 		}
 	}
-	
-	
 
 	/**
 	 * 关闭FTP连接
