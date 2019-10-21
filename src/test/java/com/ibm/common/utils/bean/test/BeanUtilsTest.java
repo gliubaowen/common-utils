@@ -3,17 +3,21 @@
  */
 package com.ibm.common.utils.bean.test;
 
-import com.ibm.common.utils.bean.BeanUtils;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.JUnit4;
 
-import junit.framework.TestCase;
+import com.ibm.common.utils.bean.BeanUtils;
 
 /**
  * @author LiuBaoWen
  *
  */
-public class BeanUtilsTest extends TestCase {
+@RunWith(JUnit4.class)
+public class BeanUtilsTest {
 
-	public void Test() {
+	@Test
+	public void beanTest() {
 
 		FromBean fromBean = new FromBean();
 		ToBean toBean = new ToBean();
