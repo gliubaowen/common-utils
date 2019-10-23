@@ -1,10 +1,9 @@
 package com.ibm.common.utils.cipher.test;
 
-import static org.junit.Assert.assertArrayEquals;
-
 import java.math.BigInteger;
 import java.util.Map;
 
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
@@ -16,8 +15,6 @@ import com.ibm.common.utils.cipher.EncryptUtils;
 import com.ibm.common.utils.cipher.PBEEncryptUtils;
 import com.ibm.common.utils.cipher.RSAEncryptUtils;
 
-import junit.framework.TestCase;
-
 /**
  * 加密测试类
  * 
@@ -25,7 +22,7 @@ import junit.framework.TestCase;
  *
  */
 @RunWith(JUnit4.class)
-public class EncryptUtilsTest extends TestCase {
+public class EncryptUtilsTest extends Assert {
 
 	@Test
 	public void SimpleEncryptTest() throws Exception {

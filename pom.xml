@@ -18,6 +18,8 @@
 		<maven.compiler.source>${java.version}</maven.compiler.source>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<maven.compiler.target>${java.version}</maven.compiler.target>
+		<!-- 解决mvn控制台中文乱码 -->
+		<argLine>-Dfile.encoding=UTF-8</argLine>
 	</properties>
 
 	<dependencies>
