@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.ibm.common.utils.bean.test;
+package com.ibm.common.utils.bean;
 
 /**
  * @author LiuBaoWen

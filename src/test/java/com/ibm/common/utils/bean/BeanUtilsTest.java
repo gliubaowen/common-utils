@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.ibm.common.utils.bean.test;
+package com.ibm.common.utils.bean;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

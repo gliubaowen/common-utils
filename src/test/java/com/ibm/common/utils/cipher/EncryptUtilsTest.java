@@ -1,4 +1,4 @@
-package com.ibm.common.utils.cipher.test;
+package com.ibm.common.utils.cipher;
 
 import java.math.BigInteger;
 import java.util.Map;

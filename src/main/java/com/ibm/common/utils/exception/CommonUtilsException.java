@@ -4,24 +4,26 @@
 package com.ibm.common.utils.exception;
 
 /**
- * Common-Utils异常类
+ * common-utils异常类
  * 
  * @author LiuBaoWen
  *
  */
-public class CommonUtilsException extends Exception {
+public class CommonUtilsException extends RuntimeException {
 
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = -4087292349412186395L;
 
 	/** 错误编码 */
 	private String errorCode;
 
-	/** get 错误编码 */
-	public String getErrorCode() {
-		return errorCode;
+	/**
+	 * @param message
+	 */
+	public CommonUtilsException(String message) {
+		super(message);
 	}
 
 	/**
@@ -33,10 +35,14 @@ public class CommonUtilsException extends Exception {
 	}
 
 	/**
+	 * 
+	 * @param errorCode
 	 * @param message
+	 * @param cause
 	 */
-	public CommonUtilsException(String message) {
-		super(message);
+	public CommonUtilsException(String errorCode, String message, Throwable cause) {
+		super(message, cause);
+		this.errorCode = errorCode;
 	}
 
 	/**
@@ -63,6 +69,11 @@ public class CommonUtilsException extends Exception {
 	public CommonUtilsException(String message, Throwable cause, boolean enableSuppression,
 			boolean writableStackTrace) {
 		super(message, cause, enableSuppression, writableStackTrace);
+	}
+
+	/** get 错误编码 */
+	public String getErrorCode() {
+		return errorCode;
 	}
 
 }
