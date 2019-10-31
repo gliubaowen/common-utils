@@ -5,8 +5,12 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import org.apache.commons.lang3.StringUtils;
-
+/**
+ * 时间工具类
+ * 
+ * @author LiuBaoWen
+ *
+ */
 public class DateUtils {
 
 	public static final String DEFAULT_PATTERN = "yyyy-MM-dd";
@@ -88,7 +92,7 @@ public class DateUtils {
 		SimpleDateFormat in_sdf = new SimpleDateFormat(patternFrom);
 		SimpleDateFormat out_sdf = new SimpleDateFormat(patternTo);
 		Date date = null;
-		if (StringUtils.isNotEmpty(dateStr) && !"null".equalsIgnoreCase(dateStr)) {
+		if (dateStr != null && dateStr.length() != 0 && !"null".equalsIgnoreCase(dateStr)) {
 			try {
 				date = in_sdf.parse(dateStr);
 				dateStr = out_sdf.format(date);

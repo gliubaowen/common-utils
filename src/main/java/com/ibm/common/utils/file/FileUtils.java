@@ -9,7 +9,7 @@ import java.io.IOException;
  * @author LiuBaoWen
  *
  */
-public class FileExtUtils {
+public class FileUtils {
 
 	/**
 	 * 获取文件后缀
