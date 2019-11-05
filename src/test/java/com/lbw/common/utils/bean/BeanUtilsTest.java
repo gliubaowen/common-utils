@@ -1,13 +1,13 @@
 /**
  * 
  */
-package com.ibm.common.utils.bean;
+package com.lbw.common.utils.bean;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 
-import com.ibm.common.utils.bean.BeanUtils;
+import com.lbw.common.utils.bean.BeanUtils;
 
 /**
  * @author LiuBaoWen

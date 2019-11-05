@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.ibm.common.utils.bean;
+package com.lbw.common.utils.bean;
 
 /**
  * @author LiuBaoWen

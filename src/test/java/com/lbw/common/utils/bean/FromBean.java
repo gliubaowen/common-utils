@@ -1,13 +1,13 @@
 /**
  * 
  */
-package com.ibm.common.utils.bean;
+package com.lbw.common.utils.bean;
 
 /**
  * @author LiuBaoWen
  *
  */
-public class ToBean {
+public class FromBean {
 
 	public long id;
 
@@ -38,4 +38,5 @@ public class ToBean {
 	public void setAge(int age) {
 		this.age = age;
 	}
+
 }

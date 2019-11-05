@@ -1,4 +1,4 @@
-package com.ibm.common.utils.bean;
+package com.lbw.common.utils.bean;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
