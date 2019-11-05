@@ -8,12 +8,12 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 
-import com.ibm.common.utils.cipher.DESEncryptUtils;
-import com.ibm.common.utils.cipher.DHEncryptUtils;
-import com.ibm.common.utils.cipher.DSAEncryptUtils;
-import com.ibm.common.utils.cipher.EncryptUtils;
-import com.ibm.common.utils.cipher.PBEEncryptUtils;
-import com.ibm.common.utils.cipher.RSAEncryptUtils;
+import com.lbw.common.utils.cipher.DESEncryptUtils;
+import com.lbw.common.utils.cipher.DHEncryptUtils;
+import com.lbw.common.utils.cipher.DSAEncryptUtils;
+import com.lbw.common.utils.cipher.EncryptUtils;
+import com.lbw.common.utils.cipher.PBEEncryptUtils;
+import com.lbw.common.utils.cipher.RSAEncryptUtils;
 
 /**
  * 加密测试类

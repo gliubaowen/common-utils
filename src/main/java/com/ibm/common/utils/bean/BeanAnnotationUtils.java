@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
-import com.ibm.common.utils.annotation.BeanField;
+import com.lbw.common.utils.annotation.BeanField;
 
 /**
  * 
