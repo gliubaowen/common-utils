@@ -221,6 +221,18 @@ public class DateUtils {
 	}
 
 	/**
+	 * 计算年龄
+	 * 
+	 * @author LiuBaoWen
+	 * @param date
+	 * @return
+	 */
+	public static int age(Date date) {
+
+		return 0;
+	}
+
+	/**
 	 * 校验传入的Pattern
 	 * 
 	 * @author LiuBaoWen
