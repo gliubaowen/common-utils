@@ -63,9 +63,9 @@ public class IdCardUtils {
 		String year = cardNo.substring(6, 10);// 获得年份
 		String month = cardNo.substring(10, 12);// 获得月份
 		Date nowdate = new Date();// 得到当前的系统时间
-		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-		String nYear = format.format(nowdate).substring(0, 4);// 当前年份
-		String nMonth = format.format(nowdate).substring(5, 7);// 月份
+		String dataStr = new SimpleDateFormat("yyyy-MM-dd").format(nowdate);
+		String nYear = dataStr.substring(0, 4);// 当前年份
+		String nMonth = dataStr.substring(5, 7);// 月份
 		// String nDay=format.format(date).substring(8,10);
 		int age = 0;
 		if (Integer.parseInt(month) <= Integer.parseInt(nMonth)) { // 当前月份大于用户出身的月份表示已过生
