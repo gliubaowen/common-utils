@@ -8,11 +8,18 @@ import java.util.Collections;
 import java.util.List;
 
 /**
+ * 抽奖工具类
+ * 
  * @author LiuBaoWen
  *
  */
 public class Lottery {
 
+	/**
+	 * 
+	 * @param orignalRates
+	 * @return
+	 */
 	public static int lottery(List<Double> orignalRates) {
 		if (orignalRates == null || orignalRates.isEmpty()) {
 			return -1;
@@ -42,6 +49,11 @@ public class Lottery {
 		return sortOrignalRates.indexOf(nextDouble);
 	}
 
+	/**
+	 * 
+	 * @param orignalRates
+	 * @return
+	 */
 	public static int getJD(List<Double> orignalRates) {
 		if (orignalRates == null || orignalRates.isEmpty()) {
 			return -1;

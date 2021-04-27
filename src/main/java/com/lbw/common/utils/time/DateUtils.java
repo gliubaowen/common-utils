@@ -3,6 +3,7 @@ package com.lbw.common.utils.time;
 import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 /**
@@ -221,15 +222,43 @@ public class DateUtils {
 	}
 
 	/**
-	 * 计算年龄
+	 * 获取本月第一天的00:00:00
 	 * 
-	 * @author LiuBaoWen
-	 * @param date
 	 * @return
 	 */
-	public static int age(Date date) {
+	public static Date getCurrMonthFirstDate() {
+		Calendar c = Calendar.getInstance();
+		c.add(Calendar.MONTH, 0);
+		c.set(Calendar.DAY_OF_MONTH, 1);
+		String first = DateUtil.formatDateYyyyMMdd2(c.getTime());
+		first = first + " 00:00:00";
+		Date queryStartDate = DateUtil.parseNormalDateFromStr(first);
+		return queryStartDate;
+	}
 
-		return 0;
+	/**
+	 * 获取本月最后一天的23:59:59
+	 * 
+	 * @return
+	 */
+	public static Date getCurrMonthEndDate() {
+		// 查询结束时间--本月最后一秒
+		Calendar lastDay = Calendar.getInstance();
+		lastDay.set(Calendar.DAY_OF_MONTH, lastDay.getActualMaximum(Calendar.DAY_OF_MONTH));
+		String last = DateUtil.formatDateYyyyMMdd2(lastDay.getTime());
+		last = last + " 23:59:59";
+		Date queryEndDate = DateUtil.parseNormalDateFromStr(last);
+		return queryEndDate;
+	}
+
+	/**
+	 * 获取当前月份整数值--用于表分区
+	 * 
+	 * @return
+	 */
+	public static Integer getCurrMonthNum() {
+		Calendar calendar = Calendar.getInstance();
+		return calendar.get(Calendar.MONTH) + 1;
 	}
 
 	/**

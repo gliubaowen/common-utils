@@ -3,6 +3,9 @@ package com.lbw.common.utils.file;
 import java.io.File;
 import java.io.IOException;
 
+import com.lbw.common.utils.constants.ConmonUtilsEnums;
+import com.lbw.common.utils.exception.CommonUtilsException;
+
 /**
  * 文件操作工具类
  * 
@@ -12,15 +15,14 @@ import java.io.IOException;
 public class FileUtils {
 
 	/**
-	 * 获取文件后缀
+	 * 获取文件名后缀
 	 * 
 	 * @param path 文件名 或者 文件全路径
 	 * @return
 	 */
 	public static String getSuffix(String path) {
-		if ("".equals(path) || path == null) {
-			return null;
-		}
+		if ("".equals(path) || path == null)
+			throw new CommonUtilsException(ConmonUtilsEnums.PATH_IS_NULL);
 		return path.substring(path.lastIndexOf(".") + 1);
 	}
 
@@ -31,9 +33,8 @@ public class FileUtils {
 	 * @return
 	 */
 	public static String getFileName(String filePath) {
-		if ("".equals(filePath) || filePath == null) {
-			return null;
-		}
+		if ("".equals(filePath) || filePath == null)
+			throw new CommonUtilsException(ConmonUtilsEnums.PATH_IS_NULL);
 		return filePath.substring(filePath.lastIndexOf("/") + 1);
 	}
 
@@ -44,9 +45,8 @@ public class FileUtils {
 	 * @return
 	 */
 	public static String getFilePath(String filePath) {
-		if ("".equals(filePath) || filePath == null) {
-			return null;
-		}
+		if ("".equals(filePath) || filePath == null)
+			throw new CommonUtilsException(ConmonUtilsEnums.PATH_IS_NULL);
 		return filePath.substring(0, filePath.lastIndexOf("/"));
 	}
 
@@ -61,16 +61,12 @@ public class FileUtils {
 		String reportPathStr = getFilePath(localFilePath);
 		File reportPath = new File(reportPathStr);
 		File reportFile = new File(localFilePath);
-		// 创建目录
-		if (!reportPath.isDirectory()) {
+
+		if (!reportPath.isDirectory()) {// 创建目录
 			reportPath.mkdirs();
-		}
-		// 创建空文件
-		if (!reportFile.exists()) {
-//			logger.info("Excel文件：{}不存在,创建此文件", localFilePath);
+		} else if (!reportFile.exists()) { // 创建空文件
 			reportFile.createNewFile();
 		}
-
 	}
 
 }

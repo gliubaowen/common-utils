@@ -3,6 +3,8 @@
  */
 package com.lbw.common.utils.exception;
 
+import com.lbw.common.utils.constants.ConmonUtilsEnums;
+
 /**
  * common-utils异常类
  * 
@@ -24,6 +26,14 @@ public class CommonUtilsException extends RuntimeException {
 	 */
 	public CommonUtilsException(String message) {
 		super(message);
+	}
+
+	/**
+	 * @param conmonUtilsEnums
+	 */
+	public CommonUtilsException(ConmonUtilsEnums conmonUtilsEnums) {
+		super(conmonUtilsEnums.message);
+		this.errorCode = conmonUtilsEnums.errorCode;
 	}
 
 	/**
