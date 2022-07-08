@@ -1,10 +1,3 @@
-/**
- * @Probject Name: common-core
- * @Path: com.ibm.sc.core.utilsNumberUtils.java
- * @Create By fanshunqing
- * @Create In 2014年10月22日 下午6:48:12
- * TODO
- */
 package com.lbw.common.utils.math;
 
 import java.util.regex.Pattern;
@@ -16,6 +9,10 @@ import java.util.regex.Pattern;
  *
  */
 public class NumUtils {
+
+	private NumUtils() {
+		throw new IllegalStateException("Utility class");
+	}
 
 	/**
 	 * 判断String是否能转化成BigDecimal

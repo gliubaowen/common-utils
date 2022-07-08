@@ -13,17 +13,21 @@ import com.lbw.common.utils.exception.CommonUtilsException;
 /**
  * 身份证工具类
  * <p>
- * 省份证1-6位是区域代码
- * 省份证7-10位是出生日期
- * 省份证11-12位是出生月份
- * 省份证13-14位是出生那天
- * 省份证17位是性别 偶数为女 奇数为男
+ * 省份证1-6位是区域代码<br>
+ * 省份证7-10位是出生日期<br>
+ * 省份证11-12位是出生月份<br>
+ * 省份证13-14位是出生那天<br>
+ * 省份证17位是性别 偶数为女 奇数为男<br>
  * </p>
  * 
  * @author LiuBaoWen
  *
  */
 public class IdCardUtils {
+
+	private IdCardUtils() {
+		throw new IllegalStateException("Utility class");
+	}
 
 	/**
 	 * 根据身份证的号码获得身份证信息

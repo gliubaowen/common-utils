@@ -6,6 +6,8 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
+import com.lbw.common.utils.exception.CommonUtilsException;
+
 /**
  * 时间工具类
  * 
@@ -13,6 +15,10 @@ import java.util.Date;
  *
  */
 public class DateUtils {
+
+	private DateUtils() {
+		throw new IllegalStateException("Utility class");
+	}
 
 	public static final String DEFAULT_PATTERN = "yyyy-MM-dd";
 
@@ -30,7 +36,7 @@ public class DateUtils {
 	public static final String HOUR_ONLY_PATTERN = "HH";
 	public static final String MINUTE_ONLY_PATTERN = "mm";
 
-	public static final String HOUR_ONLY_PATTERN_temp = "yyyy-MM-dd HH:mm:ss.SSS";
+	public static final String DATE_TIME_ALL_PATTERN = "yyyy-MM-dd HH:mm:ss.SSS";
 
 	/**
 	 * Date 转 String
@@ -90,13 +96,13 @@ public class DateUtils {
 	 * @return
 	 */
 	public static String formatToDateStr(String dateStr, String patternFrom, String patternTo) {
-		SimpleDateFormat in_sdf = new SimpleDateFormat(patternFrom);
-		SimpleDateFormat out_sdf = new SimpleDateFormat(patternTo);
+		SimpleDateFormat inSdf = new SimpleDateFormat(patternFrom);
+		SimpleDateFormat outSdf = new SimpleDateFormat(patternTo);
 		Date date = null;
 		if (dateStr != null && dateStr.length() != 0 && !"null".equalsIgnoreCase(dateStr)) {
 			try {
-				date = in_sdf.parse(dateStr);
-				dateStr = out_sdf.format(date);
+				date = inSdf.parse(dateStr);
+				dateStr = outSdf.format(date);
 			} catch (ParseException e) {
 				e.printStackTrace();
 			}
@@ -116,8 +122,7 @@ public class DateUtils {
 		Date date = null;
 		if (dateStr != null && dateStr.length() > 0) {
 			try {
-				Date _date = new SimpleDateFormat(pattern).parse(dateStr);
-				date = new Date(_date.getTime());
+				date = new SimpleDateFormat(pattern).parse(dateStr);
 			} catch (ParseException e) {
 				e.printStackTrace();
 			}
@@ -137,8 +142,8 @@ public class DateUtils {
 		java.sql.Date sqlDate = null;
 		if (dateStr != null && dateStr.length() > 0) {
 			try {
-				Date _date = new SimpleDateFormat(pattern).parse(dateStr);
-				sqlDate = new java.sql.Date(_date.getTime());
+				Date date = new SimpleDateFormat(pattern).parse(dateStr);
+				sqlDate = new java.sql.Date(date.getTime());
 			} catch (ParseException e) {
 				e.printStackTrace();
 			}
@@ -158,8 +163,8 @@ public class DateUtils {
 		Timestamp timestamp = null;
 		if (dateStr != null && dateStr.length() > 0) {
 			try {
-				Date _date = new SimpleDateFormat(pattern).parse(dateStr);
-				timestamp = new Timestamp(_date.getTime());
+				Date date = new SimpleDateFormat(pattern).parse(dateStr);
+				timestamp = new Timestamp(date.getTime());
 			} catch (ParseException e) {
 				e.printStackTrace();
 			}
@@ -198,8 +203,7 @@ public class DateUtils {
 	public static Timestamp getCurrentTimeStamp(String pattern) {
 		SimpleDateFormat sdf = new SimpleDateFormat(pattern);
 		String time = sdf.format(new Date());
-		Timestamp ts = Timestamp.valueOf(time);
-		return ts;
+		return Timestamp.valueOf(time);
 	}
 
 	/**
@@ -215,10 +219,10 @@ public class DateUtils {
 		Date startTime = parseToDate(startDate, DEFAULT_PATTERN);
 		Date endTime = parseToDate(endDate, DEFAULT_PATTERN);
 		Date currentDate = parseToDate(date, DEFAULT_PATTERN);
-		if (currentDate.compareTo(startTime) >= 0 && currentDate.compareTo(endTime) <= 0) {
-			return true;
+		if (currentDate == null) {
+			throw new CommonUtilsException("currentDate is null");
 		}
-		return false;
+		return currentDate.compareTo(startTime) >= 0 && currentDate.compareTo(endTime) <= 0;
 	}
 
 	/**
@@ -232,8 +236,7 @@ public class DateUtils {
 		c.set(Calendar.DAY_OF_MONTH, 1);
 		String first = DateUtil.formatDateYyyyMMdd2(c.getTime());
 		first = first + " 00:00:00";
-		Date queryStartDate = DateUtil.parseNormalDateFromStr(first);
-		return queryStartDate;
+		return DateUtil.parseNormalDateFromStr(first);
 	}
 
 	/**
@@ -247,8 +250,7 @@ public class DateUtils {
 		lastDay.set(Calendar.DAY_OF_MONTH, lastDay.getActualMaximum(Calendar.DAY_OF_MONTH));
 		String last = DateUtil.formatDateYyyyMMdd2(lastDay.getTime());
 		last = last + " 23:59:59";
-		Date queryEndDate = DateUtil.parseNormalDateFromStr(last);
-		return queryEndDate;
+		return DateUtil.parseNormalDateFromStr(last);
 	}
 
 	/**
@@ -259,17 +261,6 @@ public class DateUtils {
 	public static Integer getCurrMonthNum() {
 		Calendar calendar = Calendar.getInstance();
 		return calendar.get(Calendar.MONTH) + 1;
-	}
-
-	/**
-	 * 校验传入的Pattern
-	 * 
-	 * @author LiuBaoWen
-	 * @return
-	 */
-	public static boolean checkPattern() {
-
-		return false;
 	}
 
 }

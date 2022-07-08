@@ -18,8 +18,9 @@ public class EncryptUtilsTest extends Assert {
 	public void testEncryptMD5() {
 
 		try {
-			byte[] encryptMD5 = EncryptUtils.encryptMD5("hello");
-			System.out.println(encryptMD5);
+			byte[] encryptMD5 = EncryptUtils.encryptMD5("hello111");
+			System.out.println(encryptMD5.toString());
+			assertEquals("[B@880ec60", encryptMD5.toString());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -30,6 +31,7 @@ public class EncryptUtilsTest extends Assert {
 		try {
 			byte[] encryptMD5 = EncryptUtils.encryptSHA("hello");
 			System.out.println(encryptMD5);
+			assertEquals("[B@880ec60", encryptMD5.toString());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

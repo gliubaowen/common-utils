@@ -22,22 +22,23 @@ public class CommonUtilsException extends RuntimeException {
 	private String errorCode;
 
 	/**
-	 * @param message
+	 * @param message 信息
 	 */
 	public CommonUtilsException(String message) {
 		super(message);
 	}
 
 	/**
-	 * @param conmonUtilsEnums
+	 * @param conmonUtilsEnums 异常枚举
 	 */
 	public CommonUtilsException(ConmonUtilsEnums conmonUtilsEnums) {
-		super(conmonUtilsEnums.message);
-		this.errorCode = conmonUtilsEnums.errorCode;
+		super(conmonUtilsEnums.getMessage());
+		this.errorCode = conmonUtilsEnums.getErrorCode();
 	}
 
 	/**
-	 * @param errorCode
+	 * @param errorCode 错误编码
+	 * @param message   信息
 	 */
 	public CommonUtilsException(String errorCode, String message) {
 		super(message);
@@ -46,9 +47,9 @@ public class CommonUtilsException extends RuntimeException {
 
 	/**
 	 * 
-	 * @param errorCode
-	 * @param message
-	 * @param cause
+	 * @param errorCode 错误编码
+	 * @param message   信息
+	 * @param cause     异常
 	 */
 	public CommonUtilsException(String errorCode, String message, Throwable cause) {
 		super(message, cause);
@@ -56,23 +57,23 @@ public class CommonUtilsException extends RuntimeException {
 	}
 
 	/**
-	 * @param cause
+	 * @param cause 异常
 	 */
 	public CommonUtilsException(Throwable cause) {
 		super(cause);
 	}
 
 	/**
-	 * @param message
-	 * @param cause
+	 * @param message 信息
+	 * @param cause   异常
 	 */
 	public CommonUtilsException(String message, Throwable cause) {
 		super(message, cause);
 	}
 
 	/**
-	 * @param message
-	 * @param cause
+	 * @param message            信息
+	 * @param cause              异常
 	 * @param enableSuppression
 	 * @param writableStackTrace
 	 */
@@ -81,7 +82,11 @@ public class CommonUtilsException extends RuntimeException {
 		super(message, cause, enableSuppression, writableStackTrace);
 	}
 
-	/** get 错误编码 */
+	/**
+	 * 获取错误编码
+	 * 
+	 * @return errorCode
+	 */
 	public String getErrorCode() {
 		return errorCode;
 	}

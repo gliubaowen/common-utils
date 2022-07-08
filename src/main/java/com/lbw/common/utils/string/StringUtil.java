@@ -10,6 +10,10 @@ import java.math.BigDecimal;
  */
 public class StringUtil {
 
+	private StringUtil() {
+		throw new IllegalStateException("Utility class");
+	}
+
 	/**
 	 * 指定数字字符串位数前缀去零
 	 * 
@@ -71,7 +75,7 @@ public class StringUtil {
 		String str = getAscII(obj == null ? "" : obj.toString());
 		BigDecimal bc = new BigDecimal(str);
 		BigDecimal[] results = bc.divideAndRemainder(new BigDecimal(num));
-		return (long) results[1].intValue();
+		return results[1].intValue();
 	}
 
 	/**
@@ -84,7 +88,7 @@ public class StringUtil {
 		long tbRange = getModValue(obj, tbCount);
 		BigDecimal bc = new BigDecimal(tbRange);
 		BigDecimal[] results = bc.divideAndRemainder(new BigDecimal(dbCount / tbCount));
-		return (long) results[0].intValue();
+		return results[0].intValue();
 	}
 
 	/**
@@ -98,6 +102,6 @@ public class StringUtil {
 		long tbRange = getModValue(obj, tbCount);
 		BigDecimal bc = new BigDecimal(tbRange);
 		BigDecimal[] results = bc.divideAndRemainder(new BigDecimal(tbCount / dbCount));
-		return (long) results[1].intValue();
+		return results[1].intValue();
 	}
 }

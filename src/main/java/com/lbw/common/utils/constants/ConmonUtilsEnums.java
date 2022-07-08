@@ -17,8 +17,16 @@ public enum ConmonUtilsEnums {
 	}
 
 	/** 错误编码 */
-	public String errorCode;
+	private String errorCode;
 	/** 错误信息 */
-	public String message;
+	private String message;
+
+	public String getErrorCode() {
+		return errorCode;
+	}
+
+	public String getMessage() {
+		return message;
+	}
 
 }

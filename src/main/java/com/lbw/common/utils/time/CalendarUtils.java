@@ -16,9 +16,15 @@ import java.util.Date;
  */
 public class CalendarUtils {
 
-	public static String DEFAULT_PATTERN = "yyyy-MM-dd";
+	private CalendarUtils() {
+		throw new IllegalStateException("Utility class");
+	}
 
-	public static String DEFAULT_LONG_PATTERN = "yyyy-MM-dd hh:mm:ss";
+	/** 日期格式 */
+	public static final String DEFAULT_PATTERN = "yyyy-MM-dd";
+
+	/** 日期时间格式 */
+	public static final String DEFAULT_LONG_PATTERN = "yyyy-MM-dd hh:mm:ss";
 
 	/**
 	 * 获取下月第一天
@@ -98,9 +104,9 @@ public class CalendarUtils {
 	/**
 	 * 获得指定日期的前后日期 t为正表示后 负表示前
 	 * 
-	 * @param specifiedDay
+	 * @param date 时间
+	 * @param t
 	 * @return
-	 * @throws Exception
 	 */
 	public static Date getSpecifiedDay(Date date, int t) {
 		if (date == null)
@@ -115,9 +121,9 @@ public class CalendarUtils {
 	/**
 	 * 获得指定日期的前后小时 t为正表示后 负表示前
 	 * 
-	 * @param specifiedDay
+	 * @param date 时间
+	 * @param t    数字
 	 * @return
-	 * @throws Exception
 	 */
 	public static Date getSpecifiedDayByHour(Date date, int t) {
 		if (date == null)
@@ -132,9 +138,9 @@ public class CalendarUtils {
 	/**
 	 * 在日期上增加/减少指定的月数
 	 * 
-	 * @param date
-	 * @param day
-	 * @return
+	 * @param date  时间
+	 * @param month 月
+	 * @return 时间
 	 */
 	public static Date addDayToDate(Date date, int month) {
 		Calendar calendar = Calendar.getInstance();
@@ -159,7 +165,6 @@ public class CalendarUtils {
 	/**
 	 * 获取当年的第一天
 	 * 
-	 * @param year
 	 * @return
 	 */
 	public static Date getCurrYearFirst() {
@@ -171,7 +176,6 @@ public class CalendarUtils {
 	/**
 	 * 获取当年的最后一天
 	 * 
-	 * @param year
 	 * @return
 	 */
 	public static Date getCurrYearLast() {
@@ -190,8 +194,7 @@ public class CalendarUtils {
 		Calendar calendar = Calendar.getInstance();
 		calendar.clear();
 		calendar.set(Calendar.YEAR, year);
-		Date currYearFirst = calendar.getTime();
-		return currYearFirst;
+		return calendar.getTime();
 	}
 
 	/**
@@ -205,9 +208,7 @@ public class CalendarUtils {
 		calendar.clear();
 		calendar.set(Calendar.YEAR, year);
 		calendar.roll(Calendar.DAY_OF_YEAR, -1);
-		Date currYearLast = calendar.getTime();
-
-		return currYearLast;
+		return calendar.getTime();
 	}
 
 	/**
@@ -292,8 +293,7 @@ public class CalendarUtils {
 	/**
 	 * 返回指定日期的月的第一天
 	 *
-	 * @param year
-	 * @param month
+	 * @param date 时间
 	 * @return
 	 */
 	public static Date getFirstDayOfMonth(Date date) {
@@ -325,8 +325,7 @@ public class CalendarUtils {
 	/**
 	 * 返回指定日期的月的最后一天
 	 *
-	 * @param year
-	 * @param month
+	 * @param date 时间
 	 * @return
 	 */
 	public static Date getLastDayOfMonth(Date date) {
@@ -340,9 +339,9 @@ public class CalendarUtils {
 	/**
 	 * 返回指定年月的月的最后一天
 	 *
-	 * @param year
-	 * @param month
-	 * @return
+	 * @param year  年
+	 * @param month 月
+	 * @return 时间
 	 */
 	public static Date getLastDayOfMonth(Integer year, Integer month) {
 		Calendar calendar = Calendar.getInstance();
@@ -360,9 +359,8 @@ public class CalendarUtils {
 	/**
 	 * 返回指定日期的上个月的最后一天
 	 *
-	 * @param year
-	 * @param month
-	 * @return
+	 * @param date 时间
+	 * @return 时间
 	 */
 	public static Date getLastDayOfLastMonth(Date date) {
 		Calendar calendar = Calendar.getInstance();
@@ -375,9 +373,8 @@ public class CalendarUtils {
 	/**
 	 * 返回指定日期的季的第一天
 	 *
-	 * @param year
-	 * @param quarter
-	 * @return
+	 * @param date 时间
+	 * @return 时间
 	 */
 	public static Date getFirstDayOfQuarter(Date date) {
 		Calendar calendar = Calendar.getInstance();
@@ -394,9 +391,9 @@ public class CalendarUtils {
 	 */
 	public static Date getFirstDayOfQuarter(Integer year, Integer quarter) {
 		Calendar calendar = Calendar.getInstance();
-		Integer month = Integer.valueOf(0);
+		Integer month = null;
 		if (quarter == 1) {
-			month = 1 - 1;
+			month = 0;
 		} else if (quarter == 2) {
 			month = 4 - 1;
 		} else if (quarter == 3) {
@@ -412,8 +409,7 @@ public class CalendarUtils {
 	/**
 	 * 返回指定日期的季的最后一天
 	 *
-	 * @param year
-	 * @param quarter
+	 * @param date 时间
 	 * @return
 	 */
 	public static Date getLastDayOfQuarter(Date date) {
@@ -431,7 +427,7 @@ public class CalendarUtils {
 	 */
 	public static Date getLastDayOfQuarter(Integer year, Integer quarter) {
 		Calendar calendar = Calendar.getInstance();
-		Integer month = Integer.valueOf(0);
+		Integer month = null;
 		if (quarter == 1) {
 			month = 3 - 1;
 		} else if (quarter == 2) {
@@ -449,9 +445,8 @@ public class CalendarUtils {
 	/**
 	 * 返回指定日期的上一季的最后一天
 	 *
-	 * @param year
-	 * @param quarter
-	 * @return
+	 * @param date 时间
+	 * @return 时间
 	 */
 	public static Date getLastDayOfLastQuarter(Date date) {
 		Calendar calendar = Calendar.getInstance();
@@ -462,13 +457,13 @@ public class CalendarUtils {
 	/**
 	 * 返回指定年季的上一季的最后一天
 	 *
-	 * @param year
-	 * @param quarter
-	 * @return
+	 * @param year    年
+	 * @param quarter 季度
+	 * @return 时间
 	 */
 	public static Date getLastDayOfLastQuarter(Integer year, Integer quarter) {
 		Calendar calendar = Calendar.getInstance();
-		Integer month = Integer.valueOf(0);
+		Integer month = null;
 		if (quarter == 1) {
 			month = 12 - 1;
 		} else if (quarter == 2) {
@@ -486,8 +481,8 @@ public class CalendarUtils {
 	/**
 	 * 返回指定日期的季度
 	 *
-	 * @param date
-	 * @return
+	 * @param date 日期
+	 * @return 季度
 	 */
 	public static int getSeasonOfYear(Date date) {
 		Calendar calendar = Calendar.getInstance();

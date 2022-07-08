@@ -14,6 +14,10 @@ import com.lbw.common.utils.exception.CommonUtilsException;
  */
 public class FileUtils {
 
+	private FileUtils() {
+		throw new IllegalStateException("Utility class");
+	}
+
 	/**
 	 * 获取文件名后缀
 	 * 
@@ -54,19 +58,20 @@ public class FileUtils {
 	 * 根据path创建文件及目录
 	 * 
 	 * @param localFilePath
-	 * @return
 	 * @throws IOException
 	 */
-	public static void createPathAndFile(String localFilePath) throws IOException {
+	public static boolean createPathAndFile(String localFilePath) throws IOException {
 		String reportPathStr = getFilePath(localFilePath);
 		File reportPath = new File(reportPathStr);
 		File reportFile = new File(localFilePath);
 
 		if (!reportPath.isDirectory()) {// 创建目录
 			reportPath.mkdirs();
-		} else if (!reportFile.exists()) { // 创建空文件
-			reportFile.createNewFile();
 		}
+		if (!reportFile.exists()) { // 创建空文件
+			return reportFile.createNewFile();
+		}
+		return false;
 	}
 
 }

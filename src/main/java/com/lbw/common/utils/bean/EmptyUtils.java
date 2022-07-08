@@ -12,6 +12,10 @@ import java.util.Map;
  */
 public class EmptyUtils {
 
+	private EmptyUtils() {
+		throw new IllegalStateException("Utility class");
+	}
+
 	/**
 	 * 判断对象为null, null-true, not null-false
 	 * 
@@ -52,8 +56,8 @@ public class EmptyUtils {
 		else if (obj.getClass().isArray())
 			return Array.getLength(obj) == 0;
 		// 判断序列
-		else if (obj instanceof CharSequence)
-			return ((CharSequence) obj).length() == 0;
+		else if (obj instanceof CharSequence charSequence)
+			return charSequence.length() == 0;
 		return false;
 	}
 

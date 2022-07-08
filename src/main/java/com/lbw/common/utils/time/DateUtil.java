@@ -13,6 +13,10 @@ import java.util.Date;
  */
 public class DateUtil {
 
+	private DateUtil() {
+		throw new IllegalStateException("Utility class");
+	}
+
 	/**
 	 * 线程安全方式
 	 */
@@ -34,8 +38,8 @@ public class DateUtil {
 	/**
 	 * 格式化时间为时间戳：yyyyMMddHHmmssS
 	 * 
-	 * @param date
-	 * @return
+	 * @param date 时间
+	 * @return 时间字符
 	 */
 	public static String formatDate(Date date) {
 		return DATE_FORMAT_THREAD_LOCAL.get().format(date);
@@ -44,8 +48,8 @@ public class DateUtil {
 	/**
 	 * 解析字符串形式的时间戳为java.util.Date
 	 * 
-	 * @param timeStampStr
-	 * @return
+	 * @param timeStampStr 时间戳字符
+	 * @return 时间
 	 */
 	public static Date parseDateFromStr(String timeStampStr) {
 		try {
@@ -62,8 +66,8 @@ public class DateUtil {
 	/**
 	 * 格式化时间为时间戳：yyyyMMdd
 	 * 
-	 * @param date
-	 * @return
+	 * @param date 时间
+	 * @return 时间字符
 	 */
 	public static String formatDateYyyyMMdd(Date date) {
 		return DATE_FORMATY_YYYMMDD.get().format(date);
@@ -72,8 +76,8 @@ public class DateUtil {
 	/**
 	 * 解析字符串形式的时间戳为java.util.Date
 	 * 
-	 * @param timeStampStr
-	 * @return
+	 * @param timeStampStr 时间戳字符
+	 * @return 日期
 	 */
 	public static Date parseDateFromStrYyyyMMdd(String timeStampStr) {
 		try {
@@ -83,6 +87,9 @@ public class DateUtil {
 		}
 	}
 
+	/**
+	 * 
+	 */
 	public static void removeYyyyMMdd() {
 		DATE_FORMATY_YYYMMDD.remove();
 	}
@@ -90,8 +97,8 @@ public class DateUtil {
 	/**
 	 * 格式化时间为时间戳：yyyyMM
 	 * 
-	 * @param date
-	 * @return
+	 * @param date 时间
+	 * @return 时间字符
 	 */
 	public static String formatNormalDate(Date date) {
 		return DATE_FORMAT_NORMAL_THREAD_LOCAL.get().format(date);
@@ -100,8 +107,8 @@ public class DateUtil {
 	/**
 	 * 解析字符串形式的时间戳为java.util.Date
 	 * 
-	 * @param timeStampStr
-	 * @return
+	 * @param timeStampStr 时间戳字符
+	 * @return 时间
 	 */
 	public static Date parseNormalDateFromStr(String timeStampStr) {
 		try {
@@ -118,8 +125,8 @@ public class DateUtil {
 	/**
 	 * 格式化时间为时间戳：yyyy-MM-dd HH:mm:ss
 	 * 
-	 * @param date
-	 * @return
+	 * @param date 时间
+	 * @return 时间字符
 	 */
 	public static String formatDateYyyyMM(Date date) {
 		return DATE_FORMAT_YYYYMM.get().format(date);
@@ -128,8 +135,8 @@ public class DateUtil {
 	/**
 	 * 解析字符串形式的时间戳为java.util.Date yyyy-MM-dd HH:mm:ss
 	 * 
-	 * @param timeStampStr
-	 * @return
+	 * @param timeStampStr 时间戳字符
+	 * @return 时间
 	 */
 	public static Date parseDateFromStrYyyyMM(String timeStampStr) {
 		try {
@@ -146,8 +153,8 @@ public class DateUtil {
 	/**
 	 * 格式化时间为时间戳：yyyy-MM-dd
 	 * 
-	 * @param date
-	 * @return
+	 * @param date 时间
+	 * @return 时间字符
 	 */
 	public static String formatDateYyyyMMdd2(Date date) {
 		return DATE_FORMATY_YYYMMDD2.get().format(date);
@@ -156,8 +163,8 @@ public class DateUtil {
 	/**
 	 * 解析字符串形式的时间戳为java.util.Date yyyy-MM-dd
 	 * 
-	 * @param timeStampStr
-	 * @return
+	 * @param timeStampStr 时间戳字符
+	 * @return 时间
 	 */
 	public static Date parseDateFromStrYyyyMMdd2(String timeStampStr) {
 		try {

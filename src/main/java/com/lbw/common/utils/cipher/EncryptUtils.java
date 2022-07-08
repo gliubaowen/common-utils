@@ -10,6 +10,10 @@ import java.security.MessageDigest;
  */
 public class EncryptUtils {
 
+	private EncryptUtils() {
+		throw new IllegalStateException("Utility class");
+	}
+	
 	public static final String KEY_SHA = "SHA";
 	public static final String KEY_MD5 = "MD5";
 
@@ -17,7 +21,7 @@ public class EncryptUtils {
 	 * MD5加密
 	 * 
 	 * @author LiuBaoWen
-	 * @param data
+	 * @param dataStr
 	 * @return
 	 * @throws Exception
 	 */
@@ -32,7 +36,7 @@ public class EncryptUtils {
 	 * SHA加密
 	 * 
 	 * @author LiuBaoWen
-	 * @param data
+	 * @param dataStr
 	 * @return
 	 * @throws Exception
 	 */
